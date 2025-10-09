@@ -1,0 +1,136 @@
+[2025-10-09 12:57:28] HTTP Server started on http://127.0.0.1:8080
+[2025-10-09 12:57:28] Thread pool size: 10
+[2025-10-09 12:57:28] Serving files from 'resources' directory
+[2025-10-09 12:57:28] Press Ctrl+C to stop the server
+[2025-10-09 12:57:35] [Thread_0] Connection from 127.0.0.1:50176
+[2025-10-09 12:57:35] [Thread_0] Request: HEAD / HTTP/1.1
+[2025-10-09 12:57:35] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:35] [Thread_0] Method not allowed: HEAD
+[2025-10-09 12:57:35] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:35] [Thread_0] Connection closed by client
+[2025-10-09 12:57:35] [Thread_0] Connection closed
+[2025-10-09 12:57:38] [Thread_0] Connection from 127.0.0.1:50181
+[2025-10-09 12:57:38] [Thread_0] Request: GET / HTTP/1.1
+[2025-10-09 12:57:38] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:38] [Thread_0] Sending HTML file: index.html (4740 bytes)
+[2025-10-09 12:57:38] [Thread_0] Response: 200 OK (4726 bytes transferred)
+[2025-10-09 12:57:38] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:38] [Thread_0] Connection closed by client
+[2025-10-09 12:57:38] [Thread_0] Connection closed
+[2025-10-09 12:57:44] [Thread_0] Connection from 127.0.0.1:50184
+[2025-10-09 12:57:44] [Thread_0] Request: GET / HTTP/1.1
+[2025-10-09 12:57:44] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:44] [Thread_0] Sending HTML file: index.html (4740 bytes)
+[2025-10-09 12:57:44] [Thread_0] Response: 200 OK (4726 bytes transferred)
+[2025-10-09 12:57:44] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:44] [Thread_0] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 12:57:44] [Thread_0] Connection closed
+[2025-10-09 12:57:44] [Thread_0] Connection from 127.0.0.1:50185
+[2025-10-09 12:57:44] [Thread_0] Request: GET /sample.html HTTP/1.1
+[2025-10-09 12:57:44] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:44] [Thread_0] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 12:57:44] [Thread_0] Response: 200 OK (2771 bytes transferred)
+[2025-10-09 12:57:44] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:44] [Thread_0] Connection closed by client
+[2025-10-09 12:57:44] [Thread_0] Connection closed
+[2025-10-09 12:57:44] [Thread_0] Connection from 127.0.0.1:50186
+[2025-10-09 12:57:44] [Thread_0] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 12:57:44] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:44] [Thread_0] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 12:57:44] [Thread_0] Response: 200 OK (289 bytes transferred)
+[2025-10-09 12:57:44] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:44] [Thread_0] Connection closed by client
+[2025-10-09 12:57:44] [Thread_0] Connection closed
+[2025-10-09 12:57:44] [Thread_0] Connection from 127.0.0.1:50187
+[2025-10-09 12:57:44] [Thread_0] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 12:57:44] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:44] [Thread_0] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 12:57:44] [Thread_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 12:57:44] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:44] [Thread_0] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 12:57:44] [Thread_0] Connection closed
+[2025-10-09 12:57:44] [Thread_0] Connection from 127.0.0.1:50188
+[2025-10-09 12:57:44] [Thread_0] Request: GET /goku.png HTTP/1.1
+[2025-10-09 12:57:44] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:44] [Thread_0] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 12:57:44] [Thread_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 12:57:44] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:44] [Thread_0] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 12:57:44] [Thread_0] Connection closed
+[2025-10-09 12:57:44] [Thread_0] Connection from 127.0.0.1:50189
+[2025-10-09 12:57:44] [Thread_0] Request: POST /upload HTTP/1.1
+[2025-10-09 12:57:44] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:57:44] [Thread_0] Received valid JSON data
+[2025-10-09 12:57:44] [Thread_0] Created file: upload_20251009_125744_1008.json
+[2025-10-09 12:57:44] [Thread_0] Response: 201 Created
+[2025-10-09 12:57:44] [Thread_0] Connection: keep-alive
+[2025-10-09 12:57:44] [Thread_0] Connection closed by client
+[2025-10-09 12:57:44] [Thread_0] Connection closed
+[2025-10-09 12:59:46] [Thread_0] Connection from 127.0.0.1:50260
+[2025-10-09 12:59:46] [Thread_0] Request: HEAD / HTTP/1.1
+[2025-10-09 12:59:46] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:59:46] [Thread_0] Method not allowed: HEAD
+[2025-10-09 12:59:46] [Thread_0] Connection: keep-alive
+[2025-10-09 12:59:46] [Thread_0] Connection closed by client
+[2025-10-09 12:59:46] [Thread_0] Connection closed
+[2025-10-09 12:59:46] Thread pool status: 1/10 active
+[2025-10-09 12:59:46] [Thread_0] Connection from 127.0.0.1:50261
+[2025-10-09 12:59:46] [Thread_0] Request: HEAD /goku.png HTTP/1.1
+[2025-10-09 12:59:46] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:59:46] [Thread_0] Method not allowed: HEAD
+[2025-10-09 12:59:46] [Thread_0] Connection: keep-alive
+[2025-10-09 12:59:46] [Thread_0] Connection closed by client
+[2025-10-09 12:59:46] [Thread_0] Connection closed
+[2025-10-09 12:59:53] [Thread_0] Connection from 127.0.0.1:50265
+[2025-10-09 12:59:53] [Thread_0] Request: GET / HTTP/1.1
+[2025-10-09 12:59:53] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:59:53] [Thread_0] Sending HTML file: index.html (4740 bytes)
+[2025-10-09 12:59:53] [Thread_0] Response: 200 OK (4726 bytes transferred)
+[2025-10-09 12:59:53] [Thread_0] Connection: keep-alive
+[2025-10-09 12:59:53] [Thread_0] Connection closed by client
+[2025-10-09 12:59:53] [Thread_0] Connection closed
+[2025-10-09 12:59:53] [Thread_0] Connection from 127.0.0.1:50266
+[2025-10-09 12:59:53] [Thread_0] Request: HEAD /goku.png HTTP/1.1
+[2025-10-09 12:59:53] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 12:59:53] [Thread_0] Method not allowed: HEAD
+[2025-10-09 12:59:53] [Thread_0] Connection: keep-alive
+[2025-10-09 12:59:53] [Thread_0] Connection closed by client
+[2025-10-09 12:59:53] [Thread_0] Connection closed
+[2025-10-09 13:00:00] [Thread_0] Connection from 127.0.0.1:50272
+[2025-10-09 13:00:00] [Thread_0] Request: GET /goku.png HTTP/1.1
+[2025-10-09 13:00:00] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 13:00:00] [Thread_0] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 13:00:00] [Thread_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 13:00:00] [Thread_0] Connection: keep-alive
+[2025-10-09 13:00:00] [Thread_0] Connection closed by client
+[2025-10-09 13:00:00] [Thread_0] Connection closed
+[2025-10-09 13:00:00] [Thread_0] Connection from 127.0.0.1:50273
+[2025-10-09 13:00:00] [Thread_0] Request: POST /upload HTTP/1.1
+[2025-10-09 13:00:00] [Thread_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 13:00:00] [Thread_0] Received valid JSON data
+[2025-10-09 13:00:00] [Thread_0] Created file: upload_20251009_130000_1008.json
+[2025-10-09 13:00:00] [Thread_0] Response: 201 Created
+[2025-10-09 13:00:00] [Thread_0] Connection: keep-alive
+[2025-10-09 13:00:00] [Thread_0] Connection closed by client
+[2025-10-09 13:00:00] [Thread_0] Connection closed
+[2025-10-09 13:01:44] HTTP Server started on http://127.0.0.1:8081
+[2025-10-09 13:01:44] Thread pool size: 10
+[2025-10-09 13:01:44] Serving files from 'resources' directory
+[2025-10-09 13:01:44] Press Ctrl+C to stop the server
+[2025-10-09 13:01:57] [Thread_0] Connection from 127.0.0.1:50314
+[2025-10-09 13:01:57] [Thread_0] Request: GET / HTTP/1.1
+[2025-10-09 13:01:57] [Thread_0] Host validation: 127.0.0.1:8081 ✓
+[2025-10-09 13:01:57] [Thread_0] Sending HTML file: index.html (4740 bytes)
+[2025-10-09 13:01:57] [Thread_0] Response: 200 OK (4726 bytes transferred)
+[2025-10-09 13:01:57] [Thread_0] Connection: keep-alive
+[2025-10-09 13:01:57] [Thread_0] Connection closed by client
+[2025-10-09 13:01:57] [Thread_0] Connection closed
+[2025-10-09 13:01:57] [Thread_0] Connection from 127.0.0.1:50315
+[2025-10-09 13:01:57] [Thread_0] Request: POST /upload HTTP/1.1
+[2025-10-09 13:01:57] [Thread_0] Host validation: 127.0.0.1:8081 ✓
+[2025-10-09 13:01:57] [Thread_0] Received valid JSON data
+[2025-10-09 13:01:57] [Thread_0] Created file: upload_20251009_130157_0704.json
+[2025-10-09 13:01:57] [Thread_0] Response: 201 Created
+[2025-10-09 13:01:57] [Thread_0] Connection: keep-alive
+[2025-10-09 13:01:57] [Thread_0] Connection closed by client
+[2025-10-09 13:01:57] [Thread_0] Connection closed

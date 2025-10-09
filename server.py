@@ -12,32 +12,32 @@ import time
 def get_content_type(file_path):
     if file_path.endswith('.html'):
         return 'text/html; charset=utf-8'
-    # Per spec, non-HTML served as downloads using application/octet-stream
+    # all other files served as downloads using application/octet-stream
     if file_path.endswith('.txt'):
         return 'application/octet-stream'
     if file_path.endswith('.jpg') or file_path.endswith('.jpeg'):
         return 'application/octet-stream'
     if file_path.endswith('.png'):
         return 'application/octet-stream'
-    return 'application/octet-stream'
+    return 'application/octet-stream'  # default for unknown types
 
 def is_good_path(path):
-    """Enhanced path validation to prevent directory traversal attacks"""
+    """path validation to prevent directory traversal attacks"""
     # Remove leading slash and normalize path
     path = path.lstrip('/')
     
-    # Check for directory traversal attempts
+    # check for directory traversal attempts
     if '..' in path or path.startswith('/') or path.startswith('\\'):
         return False
     
-    # Additional security checks
+    # additional security checks
     normalized_path = os.path.normpath(path)
     
-    # Ensure path doesn't escape the resources directory
+    # make sure path doesn't escape the resources directory
     if normalized_path.startswith('..') or '\\..' in normalized_path or '/..' in normalized_path:
         return False
     
-    # Block absolute paths and UNC paths
+    # block absolute paths and UNC paths
     if os.path.isabs(normalized_path) or normalized_path.startswith('\\\\'):
         return False
         
@@ -85,7 +85,7 @@ def handle_client(client_socket, client_address, server_host, server_port, logge
                     logger.info(f"[{thread_id}] Connection closed by client")
                     break
                 data += chunk
-                # simple read; for small requests this is enough
+                # simple read, should be fine for most requests
             except socket.timeout:
                 logger.info(f"[{thread_id}] Connection timeout")
                 break
@@ -107,7 +107,7 @@ def handle_client(client_socket, client_address, server_host, server_port, logge
             
             logger.info(f"[{thread_id}] Request: {method} {path} {version}")
 
-            # Host validation
+            # host validation
             host_header = headers.get('host')
             expected_host = f"{server_host}:{server_port}"
             if not host_header:
@@ -119,7 +119,7 @@ def handle_client(client_socket, client_address, server_host, server_port, logge
                 client_socket.sendall(b"HTTP/1.1 403 Forbidden\r\nConnection: close\r\n\r\n")
                 break
             
-            logger.info(f"[{thread_id}] Host validation: {host_header} ✓")
+            logger.info(f"[{thread_id}] Host validation: {host_header} OK")
 
             connection_header = headers.get('connection', '').lower()
             keep_alive = (version == 'HTTP/1.1' and connection_header != 'close') or connection_header == 'keep-alive'
@@ -163,7 +163,7 @@ def handle_get_request(client_socket, path, headers, keep_alive, logger, thread_
         client_socket.sendall(b"HTTP/1.1 404 Not Found\r\nConnection: close\r\n\r\n")
         return False
 
-    # Only support .html, .txt, .png, .jpg/.jpeg per spec, others 415
+    # only support .html, .txt, .png, .jpg/.jpeg, others get 415
     allowed = (file_path.endswith('.html') or file_path.endswith('.txt') or
                file_path.endswith('.png') or file_path.endswith('.jpg') or file_path.endswith('.jpeg'))
     if not allowed:
@@ -176,7 +176,7 @@ def handle_get_request(client_socket, path, headers, keep_alive, logger, thread_
     server_hdr = 'Multi-threaded HTTP Server'
     connection_hdr = 'keep-alive' if keep_alive else 'close'
 
-    # HTML inline, others as download with Content-Disposition
+    # HTML files displayed inline, others downloaded with Content-Disposition
     if file_path.endswith('.html'):
         with open(file_path, 'r', encoding='utf-8') as f:
             body = f.read()
@@ -216,7 +216,7 @@ def handle_get_request(client_socket, path, headers, keep_alive, logger, thread_
     return True
 
 def handle_post_upload(client_socket, request, headers, path, keep_alive, logger, thread_id):
-    # Only accept JSON to /upload
+    # only accept JSON to /upload endpoint
     if path != '/upload':
         logger.warning(f"[{thread_id}] POST to non-upload endpoint: {path}")
         client_socket.sendall(b"HTTP/1.1 405 Method Not Allowed\r\nConnection: close\r\n\r\n")

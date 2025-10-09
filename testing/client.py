@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 HTTP Server Test Client
-Downloads from resources/ and tests JSON upload (/upload)
+Downloads files from resources/ and tests JSON upload to /upload endpoint
 """
 
 import socket
@@ -17,48 +17,48 @@ def log(message):
 def download_file(host, port, url_path, save_path):
     """
     Download a file from the HTTP server
-    Returns True if successful, False otherwise
+    returns True if successful, False otherwise
     """
     try:
-        # Create HTTP GET request
+        # create HTTP GET request
         request = f"GET {url_path} HTTP/1.1\r\nHost: {host}:{port}\r\n\r\n"
         
-        # Connect to server and send request
+        # connect to server and send request
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.connect((host, port))
         client_socket.send(request.encode())
         
-        # Receive response
+        # receive response
         response = client_socket.recv(4096)
         client_socket.close()
         
-        # Check if server responded with 200 OK
+        # check if server responded with 200 OK
         if b"200 OK" in response:
-            # Find where content starts (after HTTP headers)
+            # find where content starts (after HTTP headers)
             header_end = response.find(b"\r\n\r\n")
             if header_end != -1:
                 content = response[header_end + 4:]
                 
-                # Save the file
+                # save the file
                 with open(save_path, 'wb') as f:
                     f.write(content)
                 
                 file_size = len(content)
-                log(f"✅ Downloaded {url_path} -> {save_path} ({file_size} bytes)")
+                log(f"Downloaded {url_path} -> {save_path} ({file_size} bytes)")
                 return True
             else:
-                log(f"❌ Invalid response format for {url_path}")
+                log(f"Invalid response format for {url_path}")
                 return False
         else:
-            log(f"❌ Server error for {url_path}")
+            log(f"Server error for {url_path}")
             return False
             
     except Exception as e:
-        log(f"❌ Error downloading {url_path}: {e}")
+        log(f"Error downloading {url_path}: {e}")
         return False
 
 def test_json_upload(host, port):
-    """Test JSON upload functionality"""
+    """test JSON upload functionality"""
     try:
         data = {"name": "Student", "message": "Hello JSON"}
         body = json.dumps(data)
@@ -74,17 +74,17 @@ def test_json_upload(host, port):
         resp = s.recv(4096)
         s.close()
         if b"201 Created" in resp and b"application/json" in resp:
-            log("✅ JSON upload to /upload - PASSED (201 Created)")
+            log("JSON upload to /upload - PASSED (201 Created)")
             return True
         else:
-            log("❌ JSON upload to /upload - FAILED")
+            log("JSON upload to /upload - FAILED")
             return False
     except Exception as e:
-        log(f"❌ JSON upload error: {e}")
+        log(f"JSON upload error: {e}")
         return False
 
 def run_tests():
-    """Run basic tests to verify server functionality"""
+    """run basic tests to verify server functionality"""
     host = '127.0.0.1'
     port = 8080
     
@@ -92,7 +92,7 @@ def run_tests():
     log("HTTP SERVER TEST CLIENT")
     log("=" * 50)
     
-    # Files to test downloading (resources/ served at root paths)
+    # files to test downloading (resources/ served at root paths)
     test_files = [
         ("/", "downloaded_homepage.html"),                 # resources/index.html
         ("/sample.html", "downloaded_sample.html"),        # resources/sample.html
@@ -104,7 +104,7 @@ def run_tests():
     log("Testing file downloads...")
     
     success_count = 0
-    # Ensure downloads directory exists
+    # ensure downloads directory exists
     downloads_dir = "testing/downloads"
     os.makedirs(downloads_dir, exist_ok=True)
 
@@ -112,7 +112,7 @@ def run_tests():
         if download_file(host, port, url_path, f"{downloads_dir}/{save_path}"):
             success_count += 1
     
-    # Test JSON upload
+    # test JSON upload
     if test_json_upload(host, port):
         success_count += 1
     
@@ -122,13 +122,13 @@ def run_tests():
     log(f"TESTS COMPLETED: {success_count}/{total_tests} PASSED")
     log("=" * 50)
     
-    # Show downloaded files
+    # show downloaded files
     log("Downloaded files:")
     for url_path, save_path in test_files:
         file_path = f"{downloads_dir}/{save_path}"
         if os.path.exists(file_path):
             size = os.path.getsize(file_path)
-            log(f"  📄 {save_path} ({size} bytes)")
+            log(f"  {save_path} ({size} bytes)")
 
 if __name__ == "__main__":
     run_tests()
