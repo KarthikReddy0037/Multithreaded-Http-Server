@@ -1,0 +1,91 @@
+[2025-10-09 17:36:23] ================================================================================
+[2025-10-09 17:36:23] COMPREHENSIVE HTTP SERVER TEST SUITE
+[2025-10-09 17:36:23] ================================================================================
+[2025-10-09 17:36:23] Server: http://127.0.0.1:8080
+[2025-10-09 17:36:23] Test Start Time: 2025-10-09 17:36:23
+[2025-10-09 17:36:23] Number of Clients: 3 (concurrent)
+[2025-10-09 17:36:23] ================================================================================
+[2025-10-09 17:36:23] 
+[2025-10-09 17:36:23] Starting 3 concurrent client threads...
+[2025-10-09 17:36:23] [Client-1] ========== STARTED ==========
+[2025-10-09 17:36:23] [Client-1] --- Basic Functionality Tests ---
+[2025-10-09 17:36:23] [Client-1] Downloaded / -> client1_index.html (439 bytes)
+[2025-10-09 17:36:23] [Client-1] Downloaded /about.html -> client1_about.html (428 bytes)
+[2025-10-09 17:36:23] [Client-1] Downloaded /contact.html -> client1_contact.html (287 bytes)
+[2025-10-09 17:36:23] [Client-1] Downloaded /sample.txt -> client1_sample.txt (240 bytes)
+[2025-10-09 17:36:23] [Client-1] --- Binary Transfer Tests ---
+[2025-10-09 17:36:23] [Client-1] Downloaded /logo.png -> client1_logo.png (29794 bytes)
+[2025-10-09 17:36:23] [Client-2] ========== STARTED ==========
+[2025-10-09 17:36:23] [Client-2] --- Basic Functionality Tests ---
+[2025-10-09 17:36:24] [Client-3] ========== STARTED ==========
+[2025-10-09 17:36:24] [Client-3] --- Basic Functionality Tests ---
+[2025-10-09 17:36:24] [Client-2] Downloaded / -> client2_index.html (439 bytes)
+[2025-10-09 17:36:24] [Client-3] Downloaded / -> client3_index.html (439 bytes)
+[2025-10-09 17:36:24] [Client-2] Downloaded /about.html -> client2_about.html (428 bytes)
+[2025-10-09 17:36:24] [Client-3] Downloaded /about.html -> client3_about.html (428 bytes)
+[2025-10-09 17:36:24] [Client-2] Downloaded /contact.html -> client2_contact.html (287 bytes)
+[2025-10-09 17:36:24] [Client-3] Downloaded /contact.html -> client3_contact.html (287 bytes)
+[2025-10-09 17:36:24] [Client-3] Downloaded /sample.txt -> client3_sample.txt (240 bytes)
+[2025-10-09 17:36:24] [Client-3] --- Binary Transfer Tests ---
+[2025-10-09 17:36:24] [Client-2] Downloaded /sample.txt -> client2_sample.txt (240 bytes)
+[2025-10-09 17:36:24] [Client-2] --- Binary Transfer Tests ---
+[2025-10-09 17:36:24] [Client-1] Downloaded /Pizigani_1367_Chart_10MB.png -> client1_large.png (10174706 bytes)
+[2025-10-09 17:36:24] [Client-1] Large file transferred: 9.70 MB
+[2025-10-09 17:36:24] [Client-2] Downloaded /logo.png -> client2_logo.png (29794 bytes)
+[2025-10-09 17:36:24] [Client-3] Downloaded /logo.png -> client3_logo.png (29794 bytes)
+[2025-10-09 17:36:24] [Client-1] Downloaded /photo.jpg -> client1_photo.jpg (29794 bytes)
+[2025-10-09 17:36:24] [Client-1] --- Checksum Verification ---
+[2025-10-09 17:36:26] [Client-3] Downloaded /Pizigani_1367_Chart_10MB.png -> client3_large.png (10174706 bytes)
+[2025-10-09 17:36:26] [Client-3] Large file transferred: 9.70 MB
+[2025-10-09 17:36:26] [Client-1] Checksum verified: logo.png (42e7b070...)
+[2025-10-09 17:36:26] [Client-3] Downloaded /photo.jpg -> client3_photo.jpg (29794 bytes)
+[2025-10-09 17:36:26] [Client-3] --- Checksum Verification ---
+[2025-10-09 17:36:26] [Client-1] Checksum verified: photo.jpg (42e7b070...)
+[2025-10-09 17:36:26] [Client-1] --- POST/Upload Tests ---
+[2025-10-09 17:36:26] [Client-1] POST /upload -> 201 Created
+[2025-10-09 17:36:26] [Client-1] --- Error Response Tests ---
+[2025-10-09 17:36:26] [Client-1] GET /nonexistent.png -> 404
+[2025-10-09 17:36:26] [Client-1] PUT /index.html -> 405
+[2025-10-09 17:36:26] [Client-1] POST /upload (text/plain) -> 415 Unsupported Media Type
+[2025-10-09 17:36:26] [Client-1] --- Security Tests ---
+[2025-10-09 17:36:26] [Client-1] GET /../etc/passwd (path traversal blocked) -> 403
+[2025-10-09 17:36:26] [Client-1] GET with Host: evil.com -> 403
+[2025-10-09 17:36:26] [Client-1] GET without Host header -> 400 Bad Request
+[2025-10-09 17:36:26] [Client-1] ========== COMPLETED ==========
+[2025-10-09 17:36:26] [Client-3] Checksum verified: logo.png (42e7b070...)
+[2025-10-09 17:36:26] [Client-3] Checksum verified: photo.jpg (42e7b070...)
+[2025-10-09 17:36:26] [Client-3] --- POST/Upload Tests ---
+[2025-10-09 17:36:26] [Client-2] Downloaded /Pizigani_1367_Chart_10MB.png -> client2_large.png (10174706 bytes)
+[2025-10-09 17:36:26] [Client-2] Large file transferred: 9.70 MB
+[2025-10-09 17:36:26] [Client-3] POST /upload -> 201 Created
+[2025-10-09 17:36:26] [Client-3] --- Error Response Tests ---
+[2025-10-09 17:36:26] [Client-3] GET /nonexistent.png -> 404
+[2025-10-09 17:36:26] [Client-2] Downloaded /photo.jpg -> client2_photo.jpg (29794 bytes)
+[2025-10-09 17:36:26] [Client-2] --- Checksum Verification ---
+[2025-10-09 17:36:26] [Client-3] PUT /index.html -> 405
+[2025-10-09 17:36:26] [Client-3] POST /upload (text/plain) -> 415 Unsupported Media Type
+[2025-10-09 17:36:26] [Client-3] --- Security Tests ---
+[2025-10-09 17:36:26] [Client-3] GET /../etc/passwd (path traversal blocked) -> 403
+[2025-10-09 17:36:26] [Client-3] GET with Host: evil.com -> 403
+[2025-10-09 17:36:26] [Client-3] GET without Host header -> 400 Bad Request
+[2025-10-09 17:36:26] [Client-3] ========== COMPLETED ==========
+[2025-10-09 17:36:26] [Client-2] Checksum verified: logo.png (42e7b070...)
+[2025-10-09 17:36:26] [Client-2] Checksum verified: photo.jpg (42e7b070...)
+[2025-10-09 17:36:26] [Client-2] --- POST/Upload Tests ---
+[2025-10-09 17:36:26] [Client-2] POST /upload -> 201 Created
+[2025-10-09 17:36:26] [Client-2] --- Error Response Tests ---
+[2025-10-09 17:36:26] [Client-2] GET /nonexistent.png -> 404
+[2025-10-09 17:36:26] [Client-2] PUT /index.html -> 405
+[2025-10-09 17:36:26] [Client-2] POST /upload (text/plain) -> 415 Unsupported Media Type
+[2025-10-09 17:36:26] [Client-2] --- Security Tests ---
+[2025-10-09 17:36:26] [Client-2] GET /../etc/passwd (path traversal blocked) -> 403
+[2025-10-09 17:36:26] [Client-2] GET with Host: evil.com -> 403
+[2025-10-09 17:36:26] [Client-2] GET without Host header -> 400 Bad Request
+[2025-10-09 17:36:26] [Client-2] ========== COMPLETED ==========
+[2025-10-09 17:36:26] 
+[2025-10-09 17:36:26] ================================================================================
+[2025-10-09 17:36:26] ALL CLIENT THREADS COMPLETED
+[2025-10-09 17:36:26] Total Execution Time: 2.62 seconds
+[2025-10-09 17:36:26] ================================================================================
+[2025-10-09 17:36:26] 
+Test results saved to: testing/test_results.md

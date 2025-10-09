@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 """
 Multi-threaded HTTP Server
-- Handles GET and POST requests
-- Binary file transfers with chunked reading
-- Thread pool for concurrent client connections
-- Comprehensive security validation
-- Full HTTP/1.1 protocol compliance
+Handles GET/POST requests with thread pool concurrency
 """
 
 import socket
@@ -18,7 +14,7 @@ from datetime import datetime
 from email.utils import formatdate
 from concurrent.futures import ThreadPoolExecutor
 
-# Supported content types
+# Configuration
 CONTENT_TYPES = {
     '.html': 'text/html; charset=utf-8',
     '.txt': 'application/octet-stream',
@@ -27,43 +23,40 @@ CONTENT_TYPES = {
     '.png': 'application/octet-stream'
 }
 
-# Configuration constants
 MAX_HEADER_SIZE = 8192
 CHUNK_SIZE = 8192
 REQUEST_TIMEOUT = 30
-MAX_REQUESTS_PER_CONNECTION = 100
+MAX_REQUESTS = 100
 
 
 def setup_logging():
-    """Configure dual logging to file and console with timestamps"""
+    """Setup logging to file and console"""
     formatter = logging.Formatter('[%(asctime)s] %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
     
     file_handler = logging.FileHandler('server.log', mode='a')
     file_handler.setFormatter(formatter)
     
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
     
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
     logger.addHandler(file_handler)
-    logger.addHandler(stream_handler)
+    logger.addHandler(console_handler)
     
     return logger
 
 
 def is_safe_path(path):
-    """Validate path to prevent directory traversal attacks"""
+    """Check if path is safe (no traversal)"""
     path = path.lstrip('/')
     return '..' not in path and not os.path.isabs(path)
 
 
 def send_response(sock, status, headers, body=b""):
-    """Send HTTP response with standard headers"""
-    if "Date" not in headers:
-        headers["Date"] = formatdate(timeval=None, localtime=False, usegmt=True)
-    if "Server" not in headers:
-        headers["Server"] = "Multi-threaded HTTP Server"
+    """Send HTTP response"""
+    headers["Date"] = formatdate(timeval=None, localtime=False, usegmt=True)
+    headers["Server"] = "Multi-threaded HTTP Server"
     
     response = f"HTTP/1.1 {status}\r\n"
     response += "\r\n".join(f"{key}: {value}" for key, value in headers.items())
@@ -72,7 +65,7 @@ def send_response(sock, status, headers, body=b""):
 
 
 def send_error(sock, code, message):
-    """Send JSON error response"""
+    """Send error response"""
     body = json.dumps({"error": message}).encode()
     headers = {
         "Content-Type": "application/json",
@@ -83,7 +76,7 @@ def send_error(sock, code, message):
 
 
 def receive_request(sock, timeout=REQUEST_TIMEOUT):
-    """Receive and parse HTTP request with body handling"""
+    """Receive HTTP request"""
     sock.settimeout(timeout)
     try:
         data = b""
@@ -98,14 +91,14 @@ def receive_request(sock, timeout=REQUEST_TIMEOUT):
         header_end = data.index(b"\r\n\r\n")
         headers_text = data[:header_end].decode('utf-8', errors='ignore')
         
-        # Extract Content-Length if present
+        # Get Content-Length
         content_length = 0
         for line in headers_text.split('\r\n'):
             if line.lower().startswith('content-length:'):
                 content_length = int(line.split(':', 1)[1].strip())
                 break
         
-        # Read request body if Content-Length is specified
+        # Read body if needed
         body_start = header_end + 4
         body = data[body_start:]
         while len(body) < content_length:
@@ -115,18 +108,18 @@ def receive_request(sock, timeout=REQUEST_TIMEOUT):
             body += chunk
         
         return data[:body_start] + body[:content_length]
-    except (socket.timeout, Exception):
+    except:
         return None
 
 
 def handle_get(sock, path, keep_alive, logger, thread_id):
-    """Handle GET request - serve files from resources directory"""
+    """Handle GET request"""
     if path == '/':
         path = '/index.html'
     
-    # Security: validate path
+    # Check path safety
     if not is_safe_path(path):
-        logger.warning(f"[{thread_id}] Blocked path traversal: {path}")
+        logger.warning(f"[{thread_id}] Blocked unsafe path: {path}")
         send_error(sock, 403, "Forbidden")
         return False
     
@@ -138,14 +131,14 @@ def handle_get(sock, path, keep_alive, logger, thread_id):
         send_error(sock, 404, "Not Found")
         return False
     
-    # Validate file type
+    # Check file type
     ext = os.path.splitext(file_path)[1]
     if ext not in CONTENT_TYPES:
-        logger.warning(f"[{thread_id}] Unsupported file type: {ext}")
+        logger.warning(f"[{thread_id}] Unsupported type: {ext}")
         send_error(sock, 415, "Unsupported Media Type")
         return False
     
-    # Prepare response headers
+    # Send file
     file_size = os.path.getsize(file_path)
     headers = {
         "Content-Type": CONTENT_TYPES[ext],
@@ -156,8 +149,8 @@ def handle_get(sock, path, keep_alive, logger, thread_id):
     if keep_alive:
         headers["Keep-Alive"] = "timeout=30, max=100"
     
-    # Send file
     filename = os.path.basename(file_path)
+    
     if ext == '.html':
         with open(file_path, 'rb') as f:
             send_response(sock, "200 OK", headers, f.read())
@@ -170,19 +163,17 @@ def handle_get(sock, path, keep_alive, logger, thread_id):
             while chunk := f.read(CHUNK_SIZE):
                 sock.sendall(chunk)
     
-    logger.info(f"[{thread_id}] Response: 200 OK ({file_size} bytes transferred)")
+    logger.info(f"[{thread_id}] Response: 200 OK")
     return True
 
 
 def handle_post(sock, request, keep_alive, logger, thread_id):
-    """Handle POST request - JSON upload to /upload endpoint"""
+    """Handle POST request"""
     lines = request.decode('utf-8', errors='ignore').split('\r\n')
-    request_line = lines[0]
-    path = request_line.split()[1]
+    path = lines[0].split()[1]
     
-    # Only accept POST to /upload
     if path != '/upload':
-        logger.warning(f"[{thread_id}] POST to invalid path: {path}")
+        logger.warning(f"[{thread_id}] Invalid POST path: {path}")
         send_error(sock, 405, "Method Not Allowed")
         return False
     
@@ -193,13 +184,13 @@ def handle_post(sock, request, keep_alive, logger, thread_id):
             key, val = line.split(':', 1)
             headers[key.strip().lower()] = val.strip()
     
-    # Validate Content-Type
+    # Check Content-Type
     if 'application/json' not in headers.get('content-type', ''):
-        logger.warning(f"[{thread_id}] Invalid Content-Type for POST")
+        logger.warning(f"[{thread_id}] Wrong content-type for POST")
         send_error(sock, 415, "Unsupported Media Type")
         return False
     
-    # Parse JSON body
+    # Parse JSON
     try:
         header_end = request.index(b'\r\n\r\n')
         body = request[header_end + 4:].decode('utf-8')
@@ -209,7 +200,7 @@ def handle_post(sock, request, keep_alive, logger, thread_id):
         send_error(sock, 400, "Bad Request")
         return False
     
-    # Save uploaded JSON
+    # Save file
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     thread_num = threading.get_ident() % 10000
     filename = f"upload_{timestamp}_{thread_num:04d}.json"
@@ -218,9 +209,9 @@ def handle_post(sock, request, keep_alive, logger, thread_id):
     with open(filepath, 'w') as f:
         json.dump(data, f)
     
-    logger.info(f"[{thread_id}] Saved upload: {filename}")
+    logger.info(f"[{thread_id}] Saved: {filename}")
     
-    # Send success response
+    # Send response
     response_data = {
         "status": "success",
         "message": "File created successfully",
@@ -243,27 +234,27 @@ def handle_post(sock, request, keep_alive, logger, thread_id):
 
 
 def handle_client(sock, addr, server_host, server_port, logger):
-    """Handle client connection with HTTP/1.1 persistent connections"""
+    """Handle client connection"""
     thread_id = threading.current_thread().name
     logger.info(f"[{thread_id}] Connection from {addr[0]}:{addr[1]}")
     
     try:
-        for _ in range(MAX_REQUESTS_PER_CONNECTION):
+        for _ in range(MAX_REQUESTS):
             request = receive_request(sock)
             if not request:
                 break
             
-            # Parse request line
+            # Parse request
             lines = request.decode('utf-8', errors='ignore').split('\r\n')
             parts = lines[0].split()
             
             if len(parts) < 3:
-                logger.warning(f"[{thread_id}] Invalid request line")
+                logger.warning(f"[{thread_id}] Invalid request")
                 send_error(sock, 400, "Bad Request")
                 break
             
             method, path, version = parts
-            logger.info(f"[{thread_id}] Request: {method} {path} {version}")
+            logger.info(f"[{thread_id}] Request: {method} {path}")
             
             # Parse headers
             headers = {}
@@ -272,26 +263,24 @@ def handle_client(sock, addr, server_host, server_port, logger):
                     key, val = line.split(':', 1)
                     headers[key.strip().lower()] = val.strip()
             
-            # Validate Host header
+            # Check Host header
             host_header = headers.get('host', '')
             if not host_header:
                 logger.warning(f"[{thread_id}] Missing Host header")
                 send_error(sock, 400, "Bad Request")
                 break
             
-            expected_hosts = [f"{server_host}:{server_port}", f"localhost:{server_port}", f"127.0.0.1:{server_port}"]
-            if host_header not in expected_hosts:
-                logger.warning(f"[{thread_id}] Invalid Host: {host_header}")
+            allowed_hosts = [f"{server_host}:{server_port}", f"localhost:{server_port}", f"127.0.0.1:{server_port}"]
+            if host_header not in allowed_hosts:
+                logger.warning(f"[{thread_id}] Invalid host: {host_header}")
                 send_error(sock, 403, "Forbidden")
                 break
             
-            logger.info(f"[{thread_id}] Host validation: {host_header} ✓")
-            
-            # Determine connection persistence
+            # Keep-alive check
             connection = headers.get('connection', '').lower()
             keep_alive = (version == 'HTTP/1.1' and connection != 'close') or connection == 'keep-alive'
             
-            # Route request by method
+            # Route request
             if method == 'GET':
                 handle_get(sock, path, keep_alive, logger, thread_id)
             elif method == 'POST':
@@ -301,8 +290,6 @@ def handle_client(sock, addr, server_host, server_port, logger):
                 send_error(sock, 405, "Method Not Allowed")
                 break
             
-            # Log and handle connection status
-            logger.info(f"[{thread_id}] Connection: {'keep-alive' if keep_alive else 'close'}")
             if not keep_alive:
                 break
     
@@ -314,22 +301,19 @@ def handle_client(sock, addr, server_host, server_port, logger):
 
 
 def start_server(host='127.0.0.1', port=8080, max_workers=10):
-    """Initialize and start the HTTP server"""
+    """Start HTTP server"""
     logger = setup_logging()
     
-    # Create and configure server socket
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((host, port))
     server_socket.listen(50)
     
-    # Log server startup
     logger.info(f"HTTP Server started on http://{host}:{port}")
     logger.info(f"Thread pool size: {max_workers}")
     logger.info("Serving files from 'resources' directory")
     logger.info("Press Ctrl+C to stop the server")
     
-    # Handle connections with thread pool
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         connection_count = 0
         try:
@@ -337,10 +321,9 @@ def start_server(host='127.0.0.1', port=8080, max_workers=10):
                 client_sock, client_addr = server_socket.accept()
                 connection_count += 1
                 
-                # Periodic thread pool status logging
                 if connection_count % 10 == 0:
                     active = threading.active_count()
-                    logger.info(f"Thread pool status: {active} threads active, {connection_count} total connections")
+                    logger.info(f"Thread pool status: {active} threads active, {connection_count} connections")
                 
                 executor.submit(handle_client, client_sock, client_addr, host, port, logger)
         except KeyboardInterrupt:

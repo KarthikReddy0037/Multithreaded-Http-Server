@@ -1,18 +1,27 @@
 # Multi-threaded HTTP Server
 
-A HTTP/1.1 server implementation using Python socket programming with thread pool concurrency, binary file transfers, and security features.
+A Python-based HTTP/1.1 server built from scratch using socket programming with multi-threading support, binary file transfers, and security features.
 
-## Overview
+---
 
-HTTP/1.1 server supporting:
-- Thread pool-based concurrency (configurable size)
-- GET/POST request handling
-- Binary file transfers with chunked reading (8KB chunks)
-- Keep-Alive persistent connections
-- Path traversal & host validation security
+## Project Overview
+
+Built using Python socket programming and multi-threading.
+
+### Key Features
+
+- Static file serving (HTML, TXT, PNG, JPEG)
+- Concurrent client handling with thread pool
+- JSON POST request processing
+- HTTP/1.1 persistent connections
+- Path traversal protection and host validation
 - Comprehensive logging
 
-**Requirements:** Python 3.8+ (no external dependencies)
+### Requirements
+
+```
+Python 3.8+ (no external dependencies)
+```
 
 ---
 
@@ -20,76 +29,109 @@ HTTP/1.1 server supporting:
 
 ### Installation
 
-**Clone Repository**
 ```bash
 git clone <your-repository-url>
 cd "Multithreaded Http Server"
-```
-
-**Create Directories**
-```bash
 mkdir -p resources/uploads testing/downloads
 ```
 
 ### Running the Server
 
-**Command Format:**
+**Default Configuration** (127.0.0.1:8080, 10 threads):
 ```bash
-python3 server.py [PORT] [HOST] [MAX_THREADS]
+python3 server.py
 ```
 
-**Examples:**
+**Custom Configuration**:
 ```bash
-# Default (127.0.0.1:8080, 10 threads)
-python3 server.py
+python3 server.py [PORT] [HOST] [MAX_THREADS]
 
-# Custom port
+# Examples:
 python3 server.py 9000
-
-# Custom host and port
-python3 server.py 8000 0.0.0.0
-
-# Full configuration
 python3 server.py 8000 0.0.0.0 20
 ```
 
 ### Testing
 
-Run the test suite:
 ```bash
 python3 testing/client.py
 ```
 
-Test Results: 57/57 tests passing (100%)
+**Test Results**: 48/48 tests passing
 
 ### Accessing the Server
 
-**Browser:**
+**Browser**:
 - http://127.0.0.1:8080/
-- http://127.0.0.1:8080/sample.html
-- http://127.0.0.1:8080/goku.png
+- http://127.0.0.1:8080/about.html
+- http://127.0.0.1:8080/contact.html
+- http://127.0.0.1:8080/logo.png
 
-**cURL:**
+**cURL**:
 ```bash
-# GET request
 curl http://127.0.0.1:8080/
+curl -O http://127.0.0.1:8080/logo.png
+curl -O http://127.0.0.1:8080/photo.jpg
+curl -X POST http://127.0.0.1:8080/upload -H "Content-Type: application/json" -d '{"name": "test"}'
+```
 
-# Download file
-curl -O http://127.0.0.1:8080/goku.png
+---
 
-# POST JSON
-curl -X POST http://127.0.0.1:8080/upload \
-  -H "Content-Type: application/json" \
-  -d '{"name": "test"}'
+## Binary Transfer Implementation
+
+### Supported File Types
+
+| Extension | Content-Type | Transfer Mode |
+|-----------|--------------|---------------|
+| .html | text/html | Text |
+| .txt | application/octet-stream | Binary |
+| .png | application/octet-stream | Binary |
+| .jpg, .jpeg | application/octet-stream | Binary |
+
+### Transfer Method
+
+**Chunked Streaming** (8KB chunks):
+```python
+CHUNK_SIZE = 8192
+
+with open(file_path, 'rb') as f:
+    while chunk := f.read(CHUNK_SIZE):
+        sock.sendall(chunk)
+```
+
+### Features
+
+- Memory efficient (only 8KB in memory at a time)
+- Low latency streaming
+- Handles large files without corruption
+- Binary mode preserves data integrity
+- MD5 checksum verification in tests
+
+### Example Response
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+Content-Length: 1048576
+Content-Disposition: attachment; filename="image.png"
+Connection: keep-alive
+
+[binary data]
 ```
 
 ---
 
 ## Thread Pool Architecture
 
-### Implementation
+### Configuration
 
-Uses Python's `ThreadPoolExecutor`:
+| Setting | Default | Description |
+|---------|---------|-------------|
+| Thread Pool Size | 10 | Configurable via command line |
+| Max Requests/Connection | 100 | Persistent connection limit |
+| Idle Timeout | 30 sec | Auto-close inactive connections |
+
+### Implementation
 
 ```python
 with ThreadPoolExecutor(max_workers=10) as executor:
@@ -98,84 +140,26 @@ with ThreadPoolExecutor(max_workers=10) as executor:
         executor.submit(handle_client, client_sock, client_addr, host, port, logger)
 ```
 
-### Features
+### How It Works
 
-**Resource Management**
-- Pre-allocated thread pool (default: 10 threads)
-- Configurable pool size via command-line
-- Automatic thread lifecycle management
+1. **Client Connection**: Each client assigned to an available thread
+2. **Queue Management**: Excess connections queued automatically
+3. **Thread Safety**: No shared state between handlers
+4. **Monitoring**: Status logged every 10 connections
 
-**Request Queuing**
-- Automatic queuing when threads are busy
-- FIFO ordering
-- Prevents resource exhaustion
+### Example Log
 
-**Thread Safety**
-- Unique thread ID for each request
-- No shared state between handlers
-- Thread-safe logging and file operations
-
-**Monitoring**
-- Status logged every 10 connections
-- Example: `Thread pool status: 8 threads active, 40 total connections`
-
----
-
-## Binary Transfer Implementation
-
-### Chunked Transfer
-
-Memory-efficient implementation using 8KB chunks:
-
-```python
-CHUNK_SIZE = 8192  # 8KB chunks
-
-with open(file_path, 'rb') as f:
-    while chunk := f.read(CHUNK_SIZE):
-        sock.sendall(chunk)
 ```
-
-### Benefits
-
-**Memory Efficiency**
-- Large files don't load entirely into memory
-- Only 8KB in memory at any time
-- Supports concurrent large file transfers
-
-**Performance**
-- Streaming starts immediately (low latency)
-- Consistent performance regardless of file size
-- No buffering delays
-
-**Binary Mode**
-- Files opened with 'rb' flag
-- No encoding/decoding overhead
-- Byte-for-byte integrity preserved
-
-### HTTP Headers
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/octet-stream
-Content-Length: [file size]
-Content-Disposition: attachment; filename="file.png"
-Connection: keep-alive
-
-[binary data]
+[2025-10-09 14:49:12] [Thread-6] Connection from 127.0.0.1:60630
+[2025-10-09 14:49:12] [Thread-6] Request: GET /photo.jpg
+[2025-10-09 14:49:12] [Thread-6] Response: 200 OK (13070 bytes)
 ```
-
-### Data Integrity
-
-- Content-Length ensures complete transfer
-- MD5 checksum verification in tests
-- No corruption in concurrent transfers
-- Tested with 10MB files successfully
 
 ---
 
 ## Security Measures
 
-### 1. Path Traversal Protection
+### Path Traversal Protection
 
 ```python
 def is_safe_path(path):
@@ -183,80 +167,51 @@ def is_safe_path(path):
     return '..' not in path and not os.path.isabs(path)
 ```
 
-Blocks:
+**Blocked Patterns**:
 - `/../etc/passwd` → 403 Forbidden
 - `../../config` → 403 Forbidden
 - Absolute paths → 403 Forbidden
 
-### 2. Host Header Validation
+### Host Header Validation
 
-```python
-expected_hosts = [f"{server_host}:{server_port}", 
-                  f"localhost:{server_port}", 
-                  f"127.0.0.1:{server_port}"]
+**Allowed Hosts**:
+- `localhost:8080`
+- `127.0.0.1:8080`
 
-if not host_header:
-    return 400
-if host_header not in expected_hosts:
-    return 403
-```
+**Security Responses**:
+- Missing Host → 400 Bad Request
+- Invalid Host → 403 Forbidden
 
-Prevents:
-- Host Header Injection attacks
-- Cache poisoning
-- Request forgery
+### Error Handling
 
-### 3. Input Validation
+| Error Code | Condition | Response |
+|------------|-----------|----------|
+| 404 | Not Found | Resource doesn't exist |
+| 405 | Method Not Allowed | Unsupported HTTP method |
+| 415 | Unsupported Media Type | Invalid content type |
+| 500 | Internal Server Error | Unexpected errors |
 
-**Request Limits**
-- Max 8KB for headers
-- Content-Type validation for POST
-- JSON parsing with error handling
+### Additional Protections
 
-**File Extension Whitelist**
-- Only .html, .txt, .jpg, .jpeg, .png allowed
-- Prevents serving sensitive files
-
-**Error Handling**
-- 30-second timeout prevents slowloris
-- Max 100 requests per connection
-- Sockets closed in finally blocks
-
-### 4. Security Logging
-
-All security events logged:
-```
-[2025-10-09 16:48:17] [Thread-1] Blocked path traversal: /../etc/passwd
-[2025-10-09 16:48:17] [Thread-1] Response: 403 Forbidden
-```
+- Max 8KB header size
+- File extension whitelist (.html, .txt, .jpg, .jpeg, .png)
+- 30-second timeout (slowloris protection)
+- All security events logged
 
 ---
 
 ## Known Limitations
 
-### Current Limitations
-
-1. **Single Process** - Not horizontally scalable, limited by GIL
-2. **No HTTPS** - Only HTTP protocol, no encryption
-3. **Limited Methods** - Only GET and POST (no PUT, DELETE, etc.)
-4. **No Caching** - No cache-control or ETag support
-5. **Static Files Only** - No server-side scripting
-6. **No Compression** - Files sent uncompressed
-7. **No Authentication** - All resources publicly accessible
-8. **Large Files** - Files >100MB may degrade performance
-9. **No Range Requests** - Cannot resume interrupted downloads
-10. **Fixed Thread Pool** - No dynamic scaling
-
-### Future Enhancements
-
-- HTTPS/TLS support
-- HTTP/2 protocol
-- Compression (gzip, brotli)
-- Range requests for partial content
-- WebSocket support
-- Caching with ETags
-- Rate limiting
-- Multi-process workers
+| Limitation | Impact | Future Enhancement |
+|------------|--------|-------------------|
+| HTTP Methods | Only GET and POST | Add PUT, DELETE, PATCH |
+| POST Content-Type | JSON only | Support form data, multipart |
+| Security | HTTP only (no HTTPS) | SSL/TLS implementation |
+| Performance | Synchronous I/O | Async optimization |
+| Scalability | Single process, GIL limited | Multi-process workers |
+| Caching | No cache support | ETag, cache-control |
+| Compression | No compression | gzip, brotli support |
+| Authentication | Public access only | Add auth system |
 
 ---
 
@@ -264,25 +219,46 @@ All security events logged:
 
 ```
 Multithreaded Http Server/
-├── server.py              # Main server (358 lines)
-├── resources/             # Static files
-│   ├── *.html            # HTML files
-│   ├── *.txt             # Text files
-│   ├── *.png             # PNG images (up to 10MB)
-│   ├── *.jpeg            # JPEG images
-│   └── uploads/          # JSON uploads
+├── server.py                  # Main server
+├── resources/                 # Static files
+│   ├── index.html            # HTML files
+│   ├── about.html
+│   ├── contact.html
+│   ├── sample.txt            # Text file
+│   ├── logo.png              # PNG image
+│   ├── photo.jpg             # JPEG image
+│   ├── largePhoto.png        # Large PNG (>1MB)
+│   └── uploads/              # JSON uploads
 ├── testing/
-│   ├── client.py         # Test suite (403 lines)
-│   ├── test_results.md   # Test report
-│   └── test_execution.log
-├── server.log            # Server logs
-└── README.md             # Documentation
+│   ├── client.py             # Test suite
+│   ├── test_results.md
+│   ├── test_execution.log
+│   └── downloads/
+├── server.log
+└── README.md
 ```
 
 ---
 
-## Author
+## Testing and Logs
 
-**Lingaraghavendra**  
-Assignment: Multi-threaded HTTP Server Using Socket Programming  
+### Test Coverage
+
+- GET request testing (all file types)
+- POST request testing (JSON payloads)
+- Security testing (path traversal, host validation)
+- Binary transfer integrity (MD5 checksums)
+- Error response verification
+- Concurrent client handling
+
+### Log Files
+
+- `server.log` - Server activity and security events
+- `testing/test_execution.log` - Client test execution
+- `testing/test_results.md` - Detailed test report
+
+---
+
+**Author**: Lingaraghavendra  
+**Assignment**: Multi-threaded HTTP Server Using Socket Programming  
 

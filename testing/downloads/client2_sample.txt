@@ -1,0 +1,8 @@
+This is a sample text file for testing binary file downloads.
+
+Multi-threaded HTTP Server
+Assignment: Socket Programming
+Author: Lingaraghavendra
+
+This file should be downloaded as a binary file with Content-Type: application/octet-stream
+
