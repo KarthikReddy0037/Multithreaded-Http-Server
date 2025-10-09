@@ -1,83 +1,123 @@
 # Multi-threaded HTTP Server
 
-Simple HTTP server with socket programming and multi-threading for Computer Networking assignment.
+A multi-threaded HTTP server implementation built using Python socket programming. Supports GET and POST requests, serves static files, and handles JSON uploads using a ThreadPoolExecutor for concurrent client connections.
 
-## Features
-- TCP Socket Programming
-- Multi-threading
-- GET/POST requests
-- File serving (HTML, TXT, JPEG, PNG)
-- Binary file transfer
-- Path traversal protection
+## Build and Run Instructions
 
-## Usage
+### Prerequisites
+- Python 3.8 or above
+
+### Setup
+1. Clone or download this repository.
+2. Create a folder named `resources` in the project directory.
+3. Place your static files (e.g., `index.html`) inside the `resources` folder.
+4. Optionally, create a subdirectory `resources/uploads` for uploaded files.
+
+### Run the Server
 
 ```bash
-python3 server.py [port] [host]
+python3 server.py [port] [host] [thread_pool_size]
 
-# Examples:
-python3 server.py              # Default: localhost:8080
-python3 server.py 8000         # Custom port
-python3 server.py 8000 0.0.0.0 # Custom host and port
+# Examples
+python3 server.py                 # Default: 127.0.0.1:8080, 10 workers
+python3 server.py 8000           # Custom port
+python3 server.py 8000 0.0.0.0 20 # Custom host and thread pool size
 ```
 
-## Test URLs
+The server will start at:
+```
+http://127.0.0.1:8080
+```
 
-- Home: `http://localhost:8080/`
-- HTML: `http://localhost:8080/html/sample.html`
-- Text: `http://localhost:8080/text/test1.txt`
-- Images: `http://localhost:8080/images/anime.jpeg`
-- POST Form: `http://localhost:8080/html/form.html`
+Logs will be stored in `server.log`.
 
-## Testing
+### Testing
 
 ```bash
-# Basic requests
-curl http://localhost:8080/
-curl http://localhost:8080/text/test1.txt
+# Run basic tests
+cd testing
+python3 client.py
 
-# Image downloads
-curl -o test.jpg http://localhost:8080/images/anime.jpeg
-curl -o test.png http://localhost:8080/images/goku.png
-
-# POST test
-curl -X POST -d "name=Test" http://localhost:8080/
-
-# Error tests
-curl http://localhost:8080/nonexistent.html
-curl -X DELETE http://localhost:8080/
+# Manual testing with curl
+curl -i http://127.0.0.1:8080/
+curl -i http://127.0.0.1:8080/goku.png
 ```
 
 ## Project Structure
 
 ```
 project/
-├── server.py                    # Main server
-├── README.md                    # Documentation
-├── www/                         # Document root
-│   ├── html/                    # HTML files
-│   │   ├── index.html
-│   │   ├── sample.html
-│   │   └── form.html
-│   ├── text/                    # Text files
-│   │   ├── test1.txt
-│   │   └── test2.txt
-│   └── images/                  # Image files
-│       ├── anime.jpeg
-│       ├── naruto.jpeg
-│       ├── goku.png
-│       └── sample.png
-└── testing/                     # Test documentation
+├── server.py                    # Main HTTP server implementation
+├── README.md                    # This documentation
+├── server.log                   # Server logs (created at runtime)
+├── resources/                   # Static files served by server
+│   ├── index.html              # Default homepage
+│   ├── sample.html             # Sample HTML page
+│   ├── form.html               # Sample form page
+│   ├── test1.txt               # Sample text file
+│   ├── test2.txt               # Sample text file
+│   ├── anime.jpeg              # Sample JPEG image
+│   ├── goku.png                # Sample PNG image
+│   ├── naruto.jpeg             # Sample JPEG image
+│   ├── sample.png              # Sample PNG image
+│   └── uploads/                # JSON uploads saved here
+└── testing/
+    ├── client.py               # Test client
+    └── downloads/              # Downloaded test files (created during testing)
 ```
 
-## Requirements
+## Binary Transfer Implementation
 
-✅ TCP Socket Programming
-✅ Multi-threading
-✅ HTTP GET/POST requests
-✅ Binary file transfer
-✅ Error handling (404, 405, 403)
-✅ Path traversal protection
-✅ Command line configuration
+The server supports **binary file transfers** for `.png`, `.jpg`, `.jpeg`, and `.txt` files using the `Content-Disposition: attachment` header.  
+When a client requests such a file, the server reads it in binary mode and transmits it directly to the client with accurate **Content-Length** and **Content-Type** headers.
+
+### Example:
+
+Request:
+```
+GET /image.png HTTP/1.1
+```
+
+Response Headers:
+```
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="image.png"
+Content-Length: <size>
+
+```
+
+## Thread Pool Architecture
+
+The server uses Python's built-in `ThreadPoolExecutor` to manage client connections efficiently.
+
+### Key Points:
+
+* Each incoming client connection is handled by a **worker thread**.
+* The pool size can be configured via command-line arguments.
+* The main thread accepts connections and submits tasks to the pool.
+* Thread pool saturation is logged and queued connections are handled gracefully.
+
+This design ensures **concurrency**, **scalability**, and **thread safety** while preventing resource exhaustion.
+
+## Security Measures Implemented
+
+1. **Directory Traversal Protection**  
+   * Validates all file paths using the `is_good_path()` function to prevent access outside the `resources` directory.
+2. **Content-Type Validation**  
+   * Ensures only supported file types are served.  
+   * Blocks malicious or unsupported file extensions.
+3. **Timeouts and Error Handling**  
+   * Client connections are automatically closed after inactivity.  
+   * All major operations include try-except blocks for safe error handling.
+4. **Logging**  
+   * Every request, response, and error is logged with timestamps and thread identifiers in both console and `server.log`.
+
+## Known Limitations
+
+* No HTTPS support (plain HTTP only).
+* Does not handle partial content requests (e.g., `Range` headers).
+* No persistent caching or compression mechanisms.
+* Limited to simple static file serving and JSON uploads.
 
 

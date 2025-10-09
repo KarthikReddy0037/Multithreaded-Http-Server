@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 HTTP Server Test Client
-Downloads HTML, text, and images to testing/downloads/
+Downloads from resources/ and tests JSON upload (/upload)
 """
 
 import socket
 import os
+import json
 from datetime import datetime
 
 def log(message):
@@ -56,10 +57,34 @@ def download_file(host, port, url_path, save_path):
         log(f"❌ Error downloading {url_path}: {e}")
         return False
 
-## POST testing intentionally removed to keep testing minimal and file-only
+def test_json_upload(host, port):
+    """Test JSON upload functionality"""
+    try:
+        data = {"name": "Student", "message": "Hello JSON"}
+        body = json.dumps(data)
+        request = (
+            f"POST /upload HTTP/1.1\r\n"
+            f"Host: {host}:{port}\r\n"
+            f"Content-Type: application/json\r\n"
+            f"Content-Length: {len(body.encode())}\r\n\r\n{body}"
+        )
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((host, port))
+        s.sendall(request.encode())
+        resp = s.recv(4096)
+        s.close()
+        if b"201 Created" in resp and b"application/json" in resp:
+            log("✅ JSON upload to /upload - PASSED (201 Created)")
+            return True
+        else:
+            log("❌ JSON upload to /upload - FAILED")
+            return False
+    except Exception as e:
+        log(f"❌ JSON upload error: {e}")
+        return False
 
 def run_tests():
-    """Run all tests to verify server functionality"""
+    """Run basic tests to verify server functionality"""
     host = '127.0.0.1'
     port = 8080
     
@@ -67,13 +92,13 @@ def run_tests():
     log("HTTP SERVER TEST CLIENT")
     log("=" * 50)
     
-    # Files to test downloading
+    # Files to test downloading (resources/ served at root paths)
     test_files = [
-        ("/", "downloaded_homepage.html"),           # Home page
-        ("/html/sample.html", "downloaded_sample.html"),  # HTML file
-        ("/text/test1.txt", "downloaded_text.txt"),      # Text file
-        ("/images/anime.jpeg", "downloaded_image.jpeg"), # JPEG image
-        ("/images/goku.png", "downloaded_image.png"),    # PNG image
+        ("/", "downloaded_homepage.html"),                 # resources/index.html
+        ("/sample.html", "downloaded_sample.html"),        # resources/sample.html
+        ("/test1.txt", "downloaded_test1.txt"),           # resources/test1.txt
+        ("/anime.jpeg", "downloaded_anime.jpeg"),         # resources/anime.jpeg
+        ("/goku.png", "downloaded_goku.png"),            # resources/goku.png
     ]
     
     log("Testing file downloads...")
@@ -87,8 +112,14 @@ def run_tests():
         if download_file(host, port, url_path, f"{downloads_dir}/{save_path}"):
             success_count += 1
     
+    # Test JSON upload
+    if test_json_upload(host, port):
+        success_count += 1
+    
+    total_tests = len(test_files) + 1
+
     log("=" * 50)
-    log(f"TESTS COMPLETED: {success_count}/{len(test_files)} PASSED")
+    log(f"TESTS COMPLETED: {success_count}/{total_tests} PASSED")
     log("=" * 50)
     
     # Show downloaded files
