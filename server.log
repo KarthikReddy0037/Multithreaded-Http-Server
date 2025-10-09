@@ -1,308 +1,376 @@
-[2025-10-09 15:39:46] HTTP Server started on http://127.0.0.1:8080
-[2025-10-09 15:39:46] HTTP Server started on http://127.0.0.1:8080
-[2025-10-09 15:39:46] Thread pool size: 10
-[2025-10-09 15:39:46] Thread pool size: 10
-[2025-10-09 15:39:46] Serving files from 'resources' directory
-[2025-10-09 15:39:46] Serving files from 'resources' directory
-[2025-10-09 15:39:46] Press Ctrl+C to stop the server
-[2025-10-09 15:39:46] Press Ctrl+C to stop the server
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52470
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52470
-[2025-10-09 15:39:57] [Thread_0] Request: GET / HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Request: GET / HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-/Users/lingaraghavendra/folders/Computer Networking/Multithreaded Http Server/server.py:60: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[2025-10-09 15:53:31] HTTP Server started on http://127.0.0.1:8080
+[2025-10-09 15:53:31] HTTP Server started on http://127.0.0.1:8080
+[2025-10-09 15:53:31] Thread pool size: 10
+[2025-10-09 15:53:31] Thread pool size: 10
+[2025-10-09 15:53:31] Serving files from 'resources' directory
+[2025-10-09 15:53:31] Serving files from 'resources' directory
+[2025-10-09 15:53:31] Press Ctrl+C to stop the server
+[2025-10-09 15:53:31] Press Ctrl+C to stop the server
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-1
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-1
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-1] Connection from 127.0.0.1:52882
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-2
+[2025-10-09 15:53:46] [Thread-1] Connection from 127.0.0.1:52882
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-2
+[2025-10-09 15:53:46] [Thread-2] Connection from 127.0.0.1:52881
+[2025-10-09 15:53:46] [Thread-2] Connection from 127.0.0.1:52881
+[2025-10-09 15:53:46] [Thread-2] Request: GET / HTTP/1.1
+[2025-10-09 15:53:46] [Thread-2] Request: GET / HTTP/1.1
+[2025-10-09 15:53:46] [Thread-1] Request: GET / HTTP/1.1
+[2025-10-09 15:53:46] [Thread-2] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Request: GET / HTTP/1.1
+[2025-10-09 15:53:46] [Thread-1] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-2] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Sending HTML file: index.html (4716 bytes)
+[2025-10-09 15:53:46] [Thread-1] Sending HTML file: index.html (4716 bytes)
+[2025-10-09 15:53:46] [Thread-1] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 15:53:46] [Thread-1] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 15:53:46] [Thread-1] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-1] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-1] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-1] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-1] Connection closed
+[2025-10-09 15:53:46] [Thread-1] Connection closed
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-1
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-1
+[2025-10-09 15:53:46] [Thread-1] Connection from 127.0.0.1:52883
+/Users/lingaraghavendra/folders/Computer Networking/Multithreaded Http Server/server.py:61: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
   return datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
-[2025-10-09 15:39:57] [Thread_0] Sending HTML file: index.html (4716 bytes)
-[2025-10-09 15:39:57] [Thread_0] Sending HTML file: index.html (4716 bytes)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Client error: [Errno 54] Connection reset by peer
-[2025-10-09 15:39:57] [Thread_0] Client error: [Errno 54] Connection reset by peer
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52471
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52471
-[2025-10-09 15:39:57] [Thread_0] Request: GET /sample.html HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Request: GET /sample.html HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Sending HTML file: sample.html (2800 bytes)
-[2025-10-09 15:39:57] [Thread_0] Sending HTML file: sample.html (2800 bytes)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (2771 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (2771 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection closed by client
-[2025-10-09 15:39:57] [Thread_0] Connection closed by client
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52472
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52472
-[2025-10-09 15:39:57] [Thread_0] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 15:39:57] [Thread_0] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (289 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (289 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection closed by client
-[2025-10-09 15:39:57] [Thread_0] Connection closed by client
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52473
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52473
-[2025-10-09 15:39:57] [Thread_0] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 15:39:57] [Thread_0] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Client error: [Errno 54] Connection reset by peer
-[2025-10-09 15:39:57] [Thread_0] Client error: [Errno 54] Connection reset by peer
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52474
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52474
-[2025-10-09 15:39:57] [Thread_0] Request: GET /goku.png HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Request: GET /goku.png HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 15:39:57] [Thread_0] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Client error: [Errno 54] Connection reset by peer
-[2025-10-09 15:39:57] [Thread_0] Client error: [Errno 54] Connection reset by peer
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52475
-[2025-10-09 15:39:57] [Thread_0] Connection from 127.0.0.1:52475
-[2025-10-09 15:39:57] [Thread_0] Request: POST /upload HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Request: POST /upload HTTP/1.1
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:39:57] [Thread_0] Received valid JSON data
-[2025-10-09 15:39:57] [Thread_0] Received valid JSON data
-[2025-10-09 15:39:57] [Thread_0] Created file: upload_20251009_153957_8368.json
-[2025-10-09 15:39:57] [Thread_0] Created file: upload_20251009_153957_8368.json
-[2025-10-09 15:39:57] [Thread_0] Response: 201 Created
-[2025-10-09 15:39:57] [Thread_0] Response: 201 Created
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection: keep-alive
-[2025-10-09 15:39:57] [Thread_0] Connection closed by client
-[2025-10-09 15:39:57] [Thread_0] Connection closed by client
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:39:57] [Thread_0] Connection closed
-[2025-10-09 15:40:25] [Thread_0] Connection from 127.0.0.1:52483
-[2025-10-09 15:40:25] [Thread_0] Connection from 127.0.0.1:52483
-[2025-10-09 15:40:25] [Thread_0] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 15:40:25] [Thread_0] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 15:40:25] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:25] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:25] [Thread_0] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 15:40:25] [Thread_0] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 15:40:25] [Thread_0] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 15:40:25] [Thread_0] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 15:40:25] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:25] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_0] Connection closed by client
-[2025-10-09 15:40:30] [Thread_0] Connection closed by client
-[2025-10-09 15:40:30] [Thread_0] Connection closed
-[2025-10-09 15:40:30] [Thread_0] Connection closed
-[2025-10-09 15:40:30] [Thread_0] Connection from 127.0.0.1:52484
-[2025-10-09 15:40:30] [Thread_0] Connection from 127.0.0.1:52484
-[2025-10-09 15:40:30] [Thread_1] Connection from 127.0.0.1:52485
-[2025-10-09 15:40:30] [Thread_1] Connection from 127.0.0.1:52485
-[2025-10-09 15:40:30] [Thread_2] Connection from 127.0.0.1:52486
-[2025-10-09 15:40:30] [Thread_2] Connection from 127.0.0.1:52486
-[2025-10-09 15:40:30] Thread pool status: 3/10 active
-[2025-10-09 15:40:30] Thread pool status: 3/10 active
-[2025-10-09 15:40:30] [Thread_0] Request: GET /goku.png HTTP/1.1
-[2025-10-09 15:40:30] [Thread_0] Request: GET /goku.png HTTP/1.1
-[2025-10-09 15:40:30] [Thread_2] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 15:40:30] [Thread_2] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 15:40:30] [Thread_1] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 15:40:30] [Thread_1] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 15:40:30] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_2] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_2] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_3] Connection from 127.0.0.1:52487
-[2025-10-09 15:40:30] [Thread_1] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_3] Connection from 127.0.0.1:52487
-[2025-10-09 15:40:30] [Thread_1] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_4] Connection from 127.0.0.1:52488
-[2025-10-09 15:40:30] [Thread_4] Connection from 127.0.0.1:52488
-[2025-10-09 15:40:30] [Thread_4] Request: GET /index.html HTTP/1.1
-[2025-10-09 15:40:30] [Thread_4] Request: GET /index.html HTTP/1.1
-[2025-10-09 15:40:30] [Thread_4] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_4] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_3] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 15:40:30] [Thread_3] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 15:40:30] [Thread_3] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_3] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:30] [Thread_1] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 15:40:30] [Thread_1] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 15:40:30] [Thread_2] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 15:40:30] [Thread_0] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 15:40:30] [Thread_4] Sending HTML file: index.html (4716 bytes)
-[2025-10-09 15:40:30] [Thread_1] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:40:30] [Thread_2] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 15:40:30] [Thread_2] Response: 200 OK (289 bytes transferred)
-[2025-10-09 15:40:30] [Thread_0] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 15:40:30] [Thread_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:40:30] [Thread_4] Sending HTML file: index.html (4716 bytes)
-[2025-10-09 15:40:30] [Thread_4] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 15:40:30] [Thread_1] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:40:30] [Thread_1] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_2] Response: 200 OK (289 bytes transferred)
-[2025-10-09 15:40:30] [Thread_2] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 15:40:30] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_4] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 15:40:30] [Thread_4] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_1] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_2] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_4] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_3] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 15:40:30] [Thread_3] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 15:40:30] [Thread_3] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 15:40:30] [Thread_3] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 15:40:30] [Thread_3] Connection: keep-alive
-[2025-10-09 15:40:30] [Thread_3] Connection: keep-alive
-[2025-10-09 15:40:35] [Thread_0] Connection closed by client
-[2025-10-09 15:40:35] [Thread_0] Connection closed by client
-[2025-10-09 15:40:35] [Thread_0] Connection closed
-[2025-10-09 15:40:35] [Thread_0] Connection closed
-[2025-10-09 15:40:35] [Thread_1] Connection closed by client
-[2025-10-09 15:40:35] [Thread_2] Connection closed by client
-[2025-10-09 15:40:35] [Thread_2] Connection closed by client
-[2025-10-09 15:40:35] [Thread_2] Connection closed
-[2025-10-09 15:40:35] [Thread_1] Connection closed by client
-[2025-10-09 15:40:35] [Thread_2] Connection closed
-[2025-10-09 15:40:35] [Thread_1] Connection closed
-[2025-10-09 15:40:35] [Thread_4] Connection closed by client
-[2025-10-09 15:40:35] [Thread_1] Connection closed
-[2025-10-09 15:40:35] [Thread_4] Connection closed by client
-[2025-10-09 15:40:35] [Thread_4] Connection closed
-[2025-10-09 15:40:35] [Thread_4] Connection closed
-[2025-10-09 15:40:35] [Thread_3] Connection closed by client
-[2025-10-09 15:40:35] [Thread_3] Connection closed by client
-[2025-10-09 15:40:35] [Thread_3] Connection closed
-[2025-10-09 15:40:35] [Thread_3] Connection closed
-[2025-10-09 15:40:35] [Thread_0] Connection from 127.0.0.1:52489
-[2025-10-09 15:40:35] [Thread_0] Connection from 127.0.0.1:52489
-[2025-10-09 15:40:35] [Thread_0] Request: GET /nonexistent.png HTTP/1.1
-[2025-10-09 15:40:35] [Thread_0] Request: GET /nonexistent.png HTTP/1.1
-[2025-10-09 15:40:35] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:35] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:35] [Thread_0] File not found: resources/nonexistent.png
-[2025-10-09 15:40:35] [Thread_0] File not found: resources/nonexistent.png
-[2025-10-09 15:40:35] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:35] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:40] [Thread_0] Connection closed by client
-[2025-10-09 15:40:40] [Thread_0] Connection closed by client
-[2025-10-09 15:40:40] [Thread_0] Connection closed
-[2025-10-09 15:40:40] [Thread_0] Connection closed
-[2025-10-09 15:40:40] [Thread_2] Connection from 127.0.0.1:52490
-[2025-10-09 15:40:40] [Thread_2] Connection from 127.0.0.1:52490
-[2025-10-09 15:40:40] [Thread_2] Request: PUT /index.html HTTP/1.1
-[2025-10-09 15:40:40] [Thread_2] Request: PUT /index.html HTTP/1.1
-[2025-10-09 15:40:40] [Thread_2] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:40] [Thread_2] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:40] [Thread_2] Method not allowed: PUT
-[2025-10-09 15:40:40] [Thread_2] Method not allowed: PUT
-[2025-10-09 15:40:40] [Thread_2] Connection: keep-alive
-[2025-10-09 15:40:40] [Thread_2] Connection: keep-alive
-[2025-10-09 15:40:45] [Thread_2] Connection closed by client
-[2025-10-09 15:40:45] [Thread_2] Connection closed by client
-[2025-10-09 15:40:45] [Thread_1] Connection from 127.0.0.1:52491
-[2025-10-09 15:40:45] [Thread_1] Connection from 127.0.0.1:52491
-[2025-10-09 15:40:45] [Thread_2] Connection closed
-[2025-10-09 15:40:45] [Thread_2] Connection closed
-[2025-10-09 15:40:45] [Thread_1] Request: GET / HTTP/1.1
-[2025-10-09 15:40:45] [Thread_1] Request: GET / HTTP/1.1
-[2025-10-09 15:40:45] [Thread_1] Missing Host header
-[2025-10-09 15:40:45] [Thread_1] Missing Host header
-[2025-10-09 15:40:45] [Thread_1] Connection closed
-[2025-10-09 15:40:45] [Thread_1] Connection closed
-[2025-10-09 15:40:45] [Thread_4] Connection from 127.0.0.1:52492
-[2025-10-09 15:40:45] [Thread_4] Connection from 127.0.0.1:52492
-[2025-10-09 15:40:45] [Thread_4] Request: GET / HTTP/1.1
-[2025-10-09 15:40:45] [Thread_4] Request: GET / HTTP/1.1
-[2025-10-09 15:40:45] [Thread_4] Host validation failed: evil.com (expected 127.0.0.1:8080)
-[2025-10-09 15:40:45] [Thread_4] Host validation failed: evil.com (expected 127.0.0.1:8080)
-[2025-10-09 15:40:45] [Thread_4] Connection closed
-[2025-10-09 15:40:45] [Thread_4] Connection closed
-[2025-10-09 15:40:45] [Thread_3] Connection from 127.0.0.1:52493
-[2025-10-09 15:40:45] [Thread_3] Connection from 127.0.0.1:52493
-[2025-10-09 15:40:45] [Thread_3] Request: GET /../etc/passwd HTTP/1.1
-[2025-10-09 15:40:45] [Thread_3] Request: GET /../etc/passwd HTTP/1.1
-[2025-10-09 15:40:45] [Thread_3] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:45] [Thread_3] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:45] [Thread_3] Path traversal attempt blocked: /../etc/passwd
-[2025-10-09 15:40:45] [Thread_3] Path traversal attempt blocked: /../etc/passwd
-[2025-10-09 15:40:45] [Thread_3] Connection: keep-alive
-[2025-10-09 15:40:45] [Thread_3] Connection: keep-alive
-[2025-10-09 15:40:50] [Thread_3] Connection closed by client
-[2025-10-09 15:40:50] [Thread_3] Connection closed by client
-[2025-10-09 15:40:50] [Thread_3] Connection closed
-[2025-10-09 15:40:50] [Thread_3] Connection closed
-[2025-10-09 15:40:50] [Thread_0] Connection from 127.0.0.1:52494
-[2025-10-09 15:40:50] [Thread_0] Connection from 127.0.0.1:52494
-[2025-10-09 15:40:50] [Thread_0] Request: GET /tmp_test.pdf HTTP/1.1
-[2025-10-09 15:40:50] [Thread_0] Request: GET /tmp_test.pdf HTTP/1.1
-[2025-10-09 15:40:50] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:50] [Thread_0] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:50] [Thread_0] Unsupported file type: resources/tmp_test.pdf
-[2025-10-09 15:40:50] [Thread_0] Unsupported file type: resources/tmp_test.pdf
-[2025-10-09 15:40:50] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:50] [Thread_0] Connection: keep-alive
-[2025-10-09 15:40:55] [Thread_0] Connection closed by client
-[2025-10-09 15:40:55] [Thread_0] Connection closed by client
-[2025-10-09 15:40:55] [Thread_0] Connection closed
-[2025-10-09 15:40:55] [Thread_0] Connection closed
-[2025-10-09 15:40:55] [Thread_2] Connection from 127.0.0.1:52495
-[2025-10-09 15:40:55] [Thread_2] Connection from 127.0.0.1:52495
-[2025-10-09 15:40:55] [Thread_2] Request: POST /upload HTTP/1.1
-[2025-10-09 15:40:55] [Thread_2] Request: POST /upload HTTP/1.1
-[2025-10-09 15:40:55] [Thread_2] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:55] [Thread_2] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:40:55] [Thread_2] Invalid content type for POST: text/plain
-[2025-10-09 15:40:55] [Thread_2] Invalid content type for POST: text/plain
-[2025-10-09 15:40:55] [Thread_2] Connection: keep-alive
-[2025-10-09 15:40:55] [Thread_2] Connection: keep-alive
-[2025-10-09 15:41:00] [Thread_2] Connection closed by client
-[2025-10-09 15:41:00] [Thread_2] Connection closed by client
-[2025-10-09 15:41:00] [Thread_2] Connection closed
-[2025-10-09 15:41:00] [Thread_2] Connection closed
-[2025-10-09 15:41:00] Thread pool status: 5/10 active
-[2025-10-09 15:41:00] Thread pool status: 5/10 active
-[2025-10-09 15:41:00] [Thread_1] Connection from 127.0.0.1:52497
-[2025-10-09 15:41:00] [Thread_1] Connection from 127.0.0.1:52497
-[2025-10-09 15:41:00] [Thread_1] Request: POST /upload HTTP/1.1
-[2025-10-09 15:41:00] [Thread_1] Request: POST /upload HTTP/1.1
-[2025-10-09 15:41:00] [Thread_1] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:41:00] [Thread_1] Host validation: 127.0.0.1:8080 OK
-[2025-10-09 15:41:00] [Thread_1] Invalid JSON in POST body: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
-[2025-10-09 15:41:00] [Thread_1] Invalid JSON in POST body: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
-[2025-10-09 15:41:00] [Thread_1] Connection: keep-alive
-[2025-10-09 15:41:00] [Thread_1] Connection: keep-alive
-[2025-10-09 15:41:05] [Thread_1] Connection closed by client
-[2025-10-09 15:41:05] [Thread_1] Connection closed by client
-[2025-10-09 15:41:05] [Thread_1] Connection closed
-[2025-10-09 15:41:05] [Thread_1] Connection closed
+[2025-10-09 15:53:46] [Thread-1] Connection from 127.0.0.1:52883
+[2025-10-09 15:53:46] [Thread-1] Request: GET /sample.html HTTP/1.1
+[2025-10-09 15:53:46] [Thread-1] Request: GET /sample.html HTTP/1.1
+[2025-10-09 15:53:46] [Thread-1] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 15:53:46] [Thread-1] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 15:53:46] [Thread-1] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 15:53:46] [Thread-1] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 15:53:46] [Thread-1] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-1] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-1] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-1] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-1] Connection closed
+[2025-10-09 15:53:46] [Thread-1] Connection closed
+[2025-10-09 15:53:46] [Thread-2] Sending HTML file: index.html (4716 bytes)
+[2025-10-09 15:53:46] [Thread-2] Sending HTML file: index.html (4716 bytes)
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-4
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-2] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-4
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-2] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-5
+[2025-10-09 15:53:46] [Thread-4] Connection from 127.0.0.1:52884
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-2] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-5
+[2025-10-09 15:53:46] [Thread-5] Connection from 127.0.0.1:52885
+[2025-10-09 15:53:46] [Thread-4] Connection from 127.0.0.1:52884
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-2] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-6
+[2025-10-09 15:53:46] [Thread-5] Connection from 127.0.0.1:52885
+[2025-10-09 15:53:46] [Thread-4] Request: GET /sample.html HTTP/1.1
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-6
+[2025-10-09 15:53:46] [Thread-2] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-4] Request: GET /sample.html HTTP/1.1
+[2025-10-09 15:53:46] [Thread-5] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 15:53:46] [Thread-2] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-6] Connection from 127.0.0.1:52886
+[2025-10-09 15:53:46] [Thread-4] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-2] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 15:53:46] [Thread-5] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Connection from 127.0.0.1:52886
+[2025-10-09 15:53:46] [Thread-4] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Request: GET / HTTP/1.1
+[2025-10-09 15:53:46] [Thread-2] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Request: GET / HTTP/1.1
+[2025-10-09 15:53:46] [Thread-6] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-4] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 15:53:46] [Thread-4] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 15:53:46] [Thread-4] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 15:53:46] [Thread-4] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 15:53:46] [Thread-6] Sending HTML file: index.html (4716 bytes)
+[2025-10-09 15:53:46] [Thread-4] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-6] Sending HTML file: index.html (4716 bytes)
+[2025-10-09 15:53:46] [Thread-6] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-4] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-7
+[2025-10-09 15:53:46] [Thread-5] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 15:53:46] [Thread-6] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 15:53:46] [Thread-4] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-6] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-7
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Connection from 127.0.0.1:52887
+[2025-10-09 15:53:46] [Thread-5] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-8
+[2025-10-09 15:53:46] [Thread-4] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-5] Response: 200 OK (289 bytes transferred)
+[2025-10-09 15:53:46] [Thread-6] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-4] Connection closed
+[2025-10-09 15:53:46] [Thread-6] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Connection from 127.0.0.1:52887
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-9
+[2025-10-09 15:53:46] [Thread-7] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-8
+[2025-10-09 15:53:46] [Thread-8] Connection from 127.0.0.1:52888
+[2025-10-09 15:53:46] [Thread-5] Response: 200 OK (289 bytes transferred)
+[2025-10-09 15:53:46] [Thread-5] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-4] Connection closed
+[2025-10-09 15:53:46] [Thread-6] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-6] Connection closed
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-9
+[2025-10-09 15:53:46] [Thread-9] Connection from 127.0.0.1:52889
+[2025-10-09 15:53:46] [Thread-7] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 15:53:46] [Thread-7] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-8] Connection from 127.0.0.1:52888
+[2025-10-09 15:53:46] [Thread-5] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-6] Connection closed
+[2025-10-09 15:53:46] [Thread-8] Request: GET /sample.html HTTP/1.1
+[2025-10-09 15:53:46] [Thread-9] Connection from 127.0.0.1:52889
+[2025-10-09 15:53:46] [Thread-5] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-7] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-8] Request: GET /sample.html HTTP/1.1
+[2025-10-09 15:53:46] [Thread-9] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 15:53:46] [Thread-5] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-8] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-9] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 15:53:46] [Thread-5] Connection closed
+[2025-10-09 15:53:46] [Thread-8] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-9] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-7] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 15:53:46] [Thread-5] Connection closed
+[2025-10-09 15:53:46] [Thread-9] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-7] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 15:53:46] [Thread-7] Response: 200 OK (289 bytes transferred)
+[2025-10-09 15:53:46] [Thread-7] Response: 200 OK (289 bytes transferred)
+[2025-10-09 15:53:46] [Thread-7] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-7] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-8] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 15:53:46] [Thread-8] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 15:53:46] [Thread-7] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-8] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 15:53:46] [Thread-7] Connection closed or timeout
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-10
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Connection closed
+[2025-10-09 15:53:46] [Thread-8] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 15:53:46] [Thread-8] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-10
+[2025-10-09 15:53:46] [Thread-10] Connection from 127.0.0.1:52890
+[2025-10-09 15:53:46] [Thread-7] Connection closed
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-7
+[2025-10-09 15:53:46] [Thread-8] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-9] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 15:53:46] [Thread-10] Connection from 127.0.0.1:52890
+[2025-10-09 15:53:46] [Thread-8] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-7
+[2025-10-09 15:53:46] [Thread-10] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 15:53:46] [Thread-7] Connection from 127.0.0.1:52891
+[2025-10-09 15:53:46] [Thread-9] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 15:53:46] [Thread-9] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-8] Connection closed or timeout
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-1
+[2025-10-09 15:53:46] [Thread-10] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 15:53:46] [Thread-8] Connection closed
+[2025-10-09 15:53:46] [Thread-7] Connection from 127.0.0.1:52891
+[2025-10-09 15:53:46] [Thread-10] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-9] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-9] Connection: keep-alive
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-1
+[2025-10-09 15:53:46] [Thread-1] Connection from 127.0.0.1:52892
+[2025-10-09 15:53:46] [Thread-8] Connection closed
+[2025-10-09 15:53:46] [Thread-10] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-9] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-9] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-7] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 15:53:46] [Thread-7] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Connection from 127.0.0.1:52892
+[2025-10-09 15:53:46] [Thread-9] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-1] Request: GET /goku.png HTTP/1.1
+[2025-10-09 15:53:46] [Thread-7] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Request: GET /goku.png HTTP/1.1
+[2025-10-09 15:53:46] [Thread-9] Connection closed
+[2025-10-09 15:53:46] [Thread-9] Connection closed
+[2025-10-09 15:53:46] [Thread-1] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-10] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 15:53:46] [Thread-10] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 15:53:46] [Thread-10] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-10] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-10] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-10] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-7] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 15:53:46] [Thread-7] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 15:53:46] [Thread-10] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-10] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-7] Response: 200 OK (289 bytes transferred)
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-2
+[2025-10-09 15:53:46] [Thread-7] Response: 200 OK (289 bytes transferred)
+[2025-10-09 15:53:46] [Thread-1] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 15:53:46] [Thread-10] Connection closed
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-2
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-1] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-4
+[2025-10-09 15:53:46] [Thread-10] Connection closed
+[2025-10-09 15:53:46] [Thread-2] Connection from 127.0.0.1:52893
+[2025-10-09 15:53:46] [Thread-7] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-1] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Connection closed or timeout
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-4
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-4] Connection from 127.0.0.1:52894
+[2025-10-09 15:53:46] [Thread-2] Connection from 127.0.0.1:52893
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-6
+[2025-10-09 15:53:46] [Thread-1] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-2] Request: GET /goku.png HTTP/1.1
+[2025-10-09 15:53:46] [Thread-7] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-1] Connection: keep-alive
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-7] Connection closed
+[2025-10-09 15:53:46] [Thread-4] Connection from 127.0.0.1:52894
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-6
+[2025-10-09 15:53:46] [Thread-4] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 15:53:46] [Thread-2] Request: GET /goku.png HTTP/1.1
+[2025-10-09 15:53:46] [Thread-6] Connection from 127.0.0.1:52895
+[2025-10-09 15:53:46] [Thread-1] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-2] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-7] Connection closed
+[2025-10-09 15:53:46] [Thread-4] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 15:53:46] [Thread-1] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-6] Connection from 127.0.0.1:52895
+[2025-10-09 15:53:46] [Thread-4] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-2] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Request: POST /upload HTTP/1.1
+[2025-10-09 15:53:46] [Thread-1] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-4] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Connection closed
+[2025-10-09 15:53:46] [Thread-6] Request: POST /upload HTTP/1.1
+[2025-10-09 15:53:46] [Thread-6] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-1] Connection closed
+[2025-10-09 15:53:46] [Thread-6] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Received valid JSON data
+[2025-10-09 15:53:46] [Thread-6] Received valid JSON data
+[2025-10-09 15:53:46] [Thread-2] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 15:53:46] [Thread-2] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 15:53:46] [Thread-2] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-2] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-2] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-2] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-4] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 15:53:46] [Thread-4] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 15:53:46] [Thread-6] Created file: upload_20251009_155346_2096.json
+[2025-10-09 15:53:46] [Thread-6] Created file: upload_20251009_155346_2096.json
+[2025-10-09 15:53:46] [Thread-2] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-2] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-4] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-4] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-5
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-5
+[2025-10-09 15:53:46] [Thread-6] Response: 201 Created
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-3
+[2025-10-09 15:53:46] [Thread-6] Response: 201 Created
+[2025-10-09 15:53:46] [Thread-4] Connection: keep-alive
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-3
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-5] Connection from 127.0.0.1:52896
+[2025-10-09 15:53:46] [Thread-4] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-2] Connection closed
+[2025-10-09 15:53:46] [Thread-6] Connection: keep-alive
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] [Thread-3] Connection from 127.0.0.1:52897
+[2025-10-09 15:53:46] [Thread-4] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-4] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-5] Connection from 127.0.0.1:52896
+[2025-10-09 15:53:46] [Thread-4] Connection closed
+[2025-10-09 15:53:46] [Thread-2] Connection closed
+[2025-10-09 15:53:46] [Thread-3] Connection from 127.0.0.1:52897
+[2025-10-09 15:53:46] [Thread-5] Request: POST /upload HTTP/1.1
+[2025-10-09 15:53:46] [Thread-6] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-3] Request: GET /goku.png HTTP/1.1
+[2025-10-09 15:53:46] [Thread-6] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 15:53:46] [Thread-4] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Request: POST /upload HTTP/1.1
+[2025-10-09 15:53:46] [Thread-5] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-3] Request: GET /goku.png HTTP/1.1
+[2025-10-09 15:53:46] [Thread-3] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 15:53:46] [Thread-6] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-5] Received valid JSON data
+[2025-10-09 15:53:46] [Thread-3] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-6] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Received valid JSON data
+[2025-10-09 15:53:46] [Thread-3] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 15:53:46] [Thread-3] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 15:53:46] [Thread-3] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-3] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 15:53:46] [Thread-3] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-3] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-3] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-3] Connection closed or timeout
+[2025-10-09 15:53:46] [Thread-3] Connection closed
+[2025-10-09 15:53:46] [Thread-3] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Created file: upload_20251009_155346_5728.json
+[2025-10-09 15:53:46] [Thread-5] Created file: upload_20251009_155346_5728.json
+[2025-10-09 15:53:46] [Thread-5] Response: 201 Created
+[2025-10-09 15:53:46] [Thread-5] Response: 201 Created
+[2025-10-09 15:53:46] [Thread-5] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-5] Connection: keep-alive
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Warning: Thread pool saturated, queuing connection
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-8
+[2025-10-09 15:53:46] Connection dequeued, assigned to Thread-8
+[2025-10-09 15:53:46] [Thread-5] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 15:53:46] [Thread-5] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 15:53:46] [Thread-8] Connection from 127.0.0.1:52898
+[2025-10-09 15:53:46] [Thread-8] Connection from 127.0.0.1:52898
+[2025-10-09 15:53:46] [Thread-5] Connection closed
+[2025-10-09 15:53:46] [Thread-5] Connection closed
+[2025-10-09 15:53:46] [Thread-8] Request: POST /upload HTTP/1.1
+[2025-10-09 15:53:46] [Thread-8] Request: POST /upload HTTP/1.1
+[2025-10-09 15:53:46] [Thread-8] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-8] Host validation: 127.0.0.1:8080 OK
+[2025-10-09 15:53:46] [Thread-8] Received valid JSON data
+[2025-10-09 15:53:46] [Thread-8] Received valid JSON data
+[2025-10-09 15:53:46] [Thread-8] Created file: upload_20251009_155346_4832.json
+[2025-10-09 15:53:46] [Thread-8] Created file: upload_20251009_155346_4832.json
+[2025-10-09 15:53:46] [Thread-8] Response: 201 Created
+[2025-10-09 15:53:46] [Thread-8] Response: 201 Created
+[2025-10-09 15:53:46] [Thread-8] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-8] Connection: keep-alive
+[2025-10-09 15:53:46] [Thread-8] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 15:53:46] [Thread-8] Client error: [Errno 54] Connection reset by peer
+[2025-10-09 15:53:46] [Thread-8] Connection closed
+[2025-10-09 15:53:46] [Thread-8] Connection closed

@@ -28,30 +28,67 @@ def download_file(host, port, url_path, save_path):
         client_socket.connect((host, port))
         client_socket.send(request.encode())
         
-        # receive response
-        response = client_socket.recv(4096)
-        client_socket.close()
-        
-        # check if server responded with 200 OK
-        if b"200 OK" in response:
-            # find where content starts (after HTTP headers)
-            header_end = response.find(b"\r\n\r\n")
-            if header_end != -1:
-                content = response[header_end + 4:]
-                
-                # save the file
-                with open(save_path, 'wb') as f:
-                    f.write(content)
-                
-                file_size = len(content)
-                log(f"Downloaded {url_path} -> {save_path} ({file_size} bytes)")
-                return True
-            else:
-                log(f"Invalid response format for {url_path}")
-                return False
-        else:
-            log(f"Server error for {url_path}")
+        # receive response headers first, then body per Content-Length
+        response = b""
+        client_socket.settimeout(5)
+        # read until headers complete
+        while b"\r\n\r\n" not in response:
+            chunk = client_socket.recv(4096)
+            if not chunk:
+                break
+            response += chunk
+
+        header_end = response.find(b"\r\n\r\n")
+        if header_end == -1:
+            client_socket.close()
+            log(f"Invalid response format for {url_path}")
             return False
+
+        headers_blob = response[:header_end].decode('utf-8', errors='ignore')
+        body = response[header_end + 4:]
+
+        # parse status
+        status_line = headers_blob.split("\r\n", 1)[0]
+        if "200 OK" not in status_line:
+            client_socket.close()
+            log(f"Server error for {url_path} ({status_line})")
+            return False
+
+        # parse Content-Length
+        content_length = None
+        for line in headers_blob.split("\r\n"):
+            if line.lower().startswith('content-length:'):
+                try:
+                    content_length = int(line.split(':', 1)[1].strip())
+                except Exception:
+                    content_length = None
+                break
+
+        # if Content-Length present, read exactly that much
+        if content_length is not None:
+            while len(body) < content_length:
+                chunk = client_socket.recv(8192)
+                if not chunk:
+                    break
+                body += chunk
+            body = body[:content_length]
+        else:
+            # no length, read until close
+            while True:
+                chunk = client_socket.recv(8192)
+                if not chunk:
+                    break
+                body += chunk
+
+        client_socket.close()
+
+        # save the file
+        with open(save_path, 'wb') as f:
+            f.write(body)
+        
+        file_size = len(body)
+        log(f"Downloaded {url_path} -> {save_path} ({file_size} bytes)")
+        return True
             
     except Exception as e:
         log(f"Error downloading {url_path}: {e}")

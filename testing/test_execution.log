@@ -1,39 +1,58 @@
-[Start] 2025-10-09 15:39:54
-Running single-client basic tests
-[15:39:57] ==================================================
-[15:39:57] HTTP SERVER TEST CLIENT
-[15:39:57] ==================================================
-[15:39:57] Testing file downloads...
-[15:39:57] Downloaded / -> testing/downloads/downloaded_homepage.html (3885 bytes)
-[15:39:57] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
-[15:39:57] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
-[15:39:57] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (3828 bytes)
-[15:39:57] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (3830 bytes)
-[15:39:57] JSON upload to /upload - PASSED (201 Created)
-[15:39:57] ==================================================
-[15:39:57] TESTS COMPLETED: 6/6 PASSED
-[15:39:57] ==================================================
-[15:39:57] Downloaded files:
-[15:39:57]   downloaded_homepage.html (3885 bytes)
-[15:39:57]   downloaded_sample.html (2800 bytes)
-[15:39:57]   downloaded_test1.txt (289 bytes)
-[15:39:57]   downloaded_anime.jpeg (3828 bytes)
-[15:39:57]   downloaded_goku.png (3830 bytes)
-[15:40:25] Downloading 10MB file once
-[15:40:30] 10MB GET status=200, bytes=10174706, sha256=00d54ac2006fcef0...
-[15:40:30] Starting 5 concurrent downloads
-[15:40:35] Concurrent /anime.jpeg -> status=200, bytes=29794
-[15:40:35] Concurrent /test1.txt -> status=200, bytes=289
-[15:40:35] Concurrent /goku.png -> status=200, bytes=29794
-[15:40:35] Concurrent /index.html -> status=200, bytes=4716
-[15:40:35] Concurrent /Pizigani_1367_Chart_10MB.png -> status=200, bytes=10174706
-[15:40:40] NEG PASS 404 Not Found
-[15:40:45] NEG PASS 405 Method Not Allowed
-[15:40:45] NEG PASS 400 Bad Request
-[15:40:45] NEG PASS 403 Forbidden
-[15:40:50] NEG PASS 403 Forbidden
-[15:40:55] NEG PASS 415 Unsupported Media Type
-[15:41:00] NEG PASS 415 Unsupported Media Type
-[15:41:05] NEG PASS 400 Bad Request
-[15:41:05] Negative/Security tests passed: 8/8
-::RESULT_SUMMARY::{"ten_mb_status": 400, "ten_mb_size": 10174706, "concurrent": {"/anime.jpeg": {"status": 200, "bytes": 29794}, "/test1.txt": {"status": 200, "bytes": 289}, "/goku.png": {"status": 200, "bytes": 29794}, "/index.html": {"status": 200, "bytes": 4716}, "/Pizigani_1367_Chart_10MB.png": {"status": 200, "bytes": 10174706}}, "neg_passed": 8, "neg_total": 8}
+[3-clients test] 2025-10-09 15:53:46
+[C2] [15:53:46] ==================================================
+[C2] [15:53:46] HTTP SERVER TEST CLIENT
+[C2] [15:53:46] ==================================================
+[C2] [15:53:46] Testing file downloads...
+[C2] [15:53:46] Downloaded / -> testing/downloads/downloaded_homepage.html (4716 bytes)
+[C2] [15:53:46] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
+[C2] [15:53:46] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
+[C2] [15:53:46] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (29794 bytes)
+[C2] [15:53:46] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (29794 bytes)
+[C2] [15:53:46] JSON upload to /upload - PASSED (201 Created)
+[C2] [15:53:46] ==================================================
+[C2] [15:53:46] TESTS COMPLETED: 6/6 PASSED
+[C2] [15:53:46] ==================================================
+[C2] [15:53:46] Downloaded files:
+[C2] [15:53:46]   downloaded_homepage.html (4716 bytes)
+[C2] [15:53:46]   downloaded_sample.html (2800 bytes)
+[C2] [15:53:46]   downloaded_test1.txt (289 bytes)
+[C2] [15:53:46]   downloaded_anime.jpeg (29794 bytes)
+[C2] [15:53:46]   downloaded_goku.png (29794 bytes)
+[C3] [15:53:46] ==================================================
+[C3] [15:53:46] HTTP SERVER TEST CLIENT
+[C3] [15:53:46] ==================================================
+[C3] [15:53:46] Testing file downloads...
+[C3] [15:53:46] Downloaded / -> testing/downloads/downloaded_homepage.html (4716 bytes)
+[C3] [15:53:46] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
+[C3] [15:53:46] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
+[C3] [15:53:46] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (29794 bytes)
+[C3] [15:53:46] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (29794 bytes)
+[C3] [15:53:46] JSON upload to /upload - PASSED (201 Created)
+[C3] [15:53:46] ==================================================
+[C3] [15:53:46] TESTS COMPLETED: 6/6 PASSED
+[C3] [15:53:46] ==================================================
+[C3] [15:53:46] Downloaded files:
+[C3] [15:53:46]   downloaded_homepage.html (4716 bytes)
+[C3] [15:53:46]   downloaded_sample.html (2800 bytes)
+[C3] [15:53:46]   downloaded_test1.txt (289 bytes)
+[C3] [15:53:46]   downloaded_anime.jpeg (29794 bytes)
+[C3] [15:53:46]   downloaded_goku.png (29794 bytes)
+[C1] [15:53:46] ==================================================
+[C1] [15:53:46] HTTP SERVER TEST CLIENT
+[C1] [15:53:46] ==================================================
+[C1] [15:53:46] Testing file downloads...
+[C1] [15:53:46] Downloaded / -> testing/downloads/downloaded_homepage.html (4716 bytes)
+[C1] [15:53:46] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
+[C1] [15:53:46] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
+[C1] [15:53:46] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (29794 bytes)
+[C1] [15:53:46] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (29794 bytes)
+[C1] [15:53:46] JSON upload to /upload - PASSED (201 Created)
+[C1] [15:53:46] ==================================================
+[C1] [15:53:46] TESTS COMPLETED: 6/6 PASSED
+[C1] [15:53:46] ==================================================
+[C1] [15:53:46] Downloaded files:
+[C1] [15:53:46]   downloaded_homepage.html (4716 bytes)
+[C1] [15:53:46]   downloaded_sample.html (2800 bytes)
+[C1] [15:53:46]   downloaded_test1.txt (289 bytes)
+[C1] [15:53:46]   downloaded_anime.jpeg (29794 bytes)
+[C1] [15:53:46]   downloaded_goku.png (29794 bytes)

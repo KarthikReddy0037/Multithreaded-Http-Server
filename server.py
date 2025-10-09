@@ -8,6 +8,7 @@ import logging
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 import time
+import queue
 
 def get_content_type(file_path):
     if file_path.endswith('.html'):
@@ -70,26 +71,86 @@ def parse_headers(raw_request: str):
             headers[k.strip().lower()] = v.strip()
     return headers
 
+def _send_response(client_socket, status_line: str, headers: dict, body: bytes = b""):
+    headers_lines = []
+    for k, v in headers.items():
+        headers_lines.append(f"{k}: {v}")
+    header_blob = (status_line + "\r\n" + "\r\n".join(headers_lines) + "\r\n\r\n").encode()
+    client_socket.sendall(header_blob)
+    if body:
+        client_socket.sendall(body)
+
+
+def _standard_headers(content_type: str, content_length: int, keep_alive: bool):
+    headers = {
+        "Date": rfc7231_date(),
+        "Server": "Multi-threaded HTTP Server",
+        "Content-Type": content_type,
+        "Content-Length": str(content_length),
+        "Connection": "keep-alive" if keep_alive else "close",
+    }
+    if keep_alive:
+        headers["Keep-Alive"] = "timeout=30, max=100"
+    return headers
+
+
+def _send_error(client_socket, code: int, message: str, keep_alive: bool = False):
+    status_line = f"HTTP/1.1 {code} {message}"
+    body = json.dumps({"error": message}).encode()
+    headers = _standard_headers("application/json", len(body), keep_alive)
+    _send_response(client_socket, status_line, headers, body)
+
+
+def _recv_http_request(sock: socket.socket, timeout: int, max_size: int = 8192) -> bytes:
+    sock.settimeout(timeout)
+    data = bytearray()
+    header_end = -1
+    while True:
+        if len(data) >= max_size:
+            break
+        try:
+            chunk = sock.recv(4096)
+        except socket.timeout:
+            break
+        if not chunk:
+            break
+        data.extend(chunk)
+        if header_end == -1:
+            idx = data.find(b"\r\n\r\n")
+            if idx != -1:
+                header_end = idx
+                # If Content-Length exists, ensure full body received (but still cap by max_size)
+                headers_part = data[:header_end].decode('utf-8', errors='ignore')
+                lines = headers_part.split('\r\n')
+                cl = 0
+                for line in lines[1:]:
+                    if line.lower().startswith('content-length:'):
+                        try:
+                            cl = int(line.split(':', 1)[1].strip())
+                        except Exception:
+                            cl = 0
+                        break
+                total_needed = header_end + 4 + cl
+                while len(data) < total_needed and len(data) < max_size:
+                    more = sock.recv(min(4096, max_size - len(data)))
+                    if not more:
+                        break
+                    data.extend(more)
+                break
+    return bytes(data)
+
+
 def handle_client(client_socket, client_address, server_host, server_port, logger, keep_alive_timeout=30, max_requests=100):
     thread_id = threading.current_thread().name
     logger.info(f"[{thread_id}] Connection from {client_address[0]}:{client_address[1]}")
     
     try:
-        client_socket.settimeout(keep_alive_timeout)
         num_requests = 0
         while num_requests < max_requests:
-            data = b''
-            try:
-                chunk = client_socket.recv(8192)
-                if not chunk:
-                    logger.info(f"[{thread_id}] Connection closed by client")
-                    break
-                data += chunk
-                # simple read, should be fine for most requests
-            except socket.timeout:
-                logger.info(f"[{thread_id}] Connection timeout")
+            data = _recv_http_request(client_socket, keep_alive_timeout, 8192)
+            if not data:
+                logger.info(f"[{thread_id}] Connection closed or timeout")
                 break
-
             request = data.decode('utf-8', errors='ignore')
             if not request:
                 break
@@ -99,7 +160,7 @@ def handle_client(client_socket, client_address, server_host, server_port, logge
             parts = request_line.split()
             if len(parts) < 3:
                 logger.warning(f"[{thread_id}] Malformed request: {request_line}")
-                client_socket.sendall(b"HTTP/1.1 400 Bad Request\r\nConnection: close\r\n\r\n")
+                _send_error(client_socket, 400, "Bad Request", keep_alive=False)
                 break
 
             method, path, version = parts[0], parts[1], parts[2]
@@ -112,11 +173,11 @@ def handle_client(client_socket, client_address, server_host, server_port, logge
             expected_host = f"{server_host}:{server_port}"
             if not host_header:
                 logger.warning(f"[{thread_id}] Missing Host header")
-                client_socket.sendall(b"HTTP/1.1 400 Bad Request\r\nConnection: close\r\n\r\n")
+                _send_error(client_socket, 400, "Bad Request", keep_alive=False)
                 break
             if host_header not in (expected_host, f"localhost:{server_port}", f"127.0.0.1:{server_port}"):
                 logger.warning(f"[{thread_id}] Host validation failed: {host_header} (expected {expected_host})")
-                client_socket.sendall(b"HTTP/1.1 403 Forbidden\r\nConnection: close\r\n\r\n")
+                _send_error(client_socket, 403, "Forbidden", keep_alive=False)
                 break
             
             logger.info(f"[{thread_id}] Host validation: {host_header} OK")
@@ -130,7 +191,7 @@ def handle_client(client_socket, client_address, server_host, server_port, logge
                 handled = handle_post_upload(client_socket, request, headers, path, keep_alive, logger, thread_id)
             else:
                 logger.warning(f"[{thread_id}] Method not allowed: {method}")
-                client_socket.sendall(b"HTTP/1.1 405 Method Not Allowed\r\nConnection: close\r\n\r\n")
+                _send_error(client_socket, 405, "Method Not Allowed", keep_alive=False)
                 handled = False
 
             num_requests += 1
@@ -154,13 +215,13 @@ def handle_get_request(client_socket, path, headers, keep_alive, logger, thread_
         path = '/index.html'
     if not is_good_path(path):
         logger.warning(f"[{thread_id}] Path traversal attempt blocked: {path}")
-        client_socket.sendall(b"HTTP/1.1 403 Forbidden\r\nConnection: close\r\n\r\n")
+        _send_error(client_socket, 403, "Forbidden", keep_alive=False)
         return False
 
     file_path = os.path.join('resources', path.lstrip('/'))
     if not (os.path.exists(file_path) and os.path.isfile(file_path)):
         logger.warning(f"[{thread_id}] File not found: {file_path}")
-        client_socket.sendall(b"HTTP/1.1 404 Not Found\r\nConnection: close\r\n\r\n")
+        _send_error(client_socket, 404, "Not Found", keep_alive=False)
         return False
 
     # only support .html, .txt, .png, .jpg/.jpeg, others get 415
@@ -172,64 +233,52 @@ def handle_get_request(client_socket, path, headers, keep_alive, logger, thread_
         return False
 
     content_type = get_content_type(file_path)
-    date_hdr = rfc7231_date()
-    server_hdr = 'Multi-threaded HTTP Server'
     connection_hdr = 'keep-alive' if keep_alive else 'close'
 
     # HTML files displayed inline, others downloaded with Content-Disposition
     if file_path.endswith('.html'):
         with open(file_path, 'r', encoding='utf-8') as f:
-            body = f.read()
-        headers_str = (
-            f"HTTP/1.1 200 OK\r\n"
-            f"Date: {date_hdr}\r\n"
-            f"Server: {server_hdr}\r\n"
-            f"Content-Type: {content_type}\r\n"
-            f"Content-Length: {len(body.encode())}\r\n"
-            f"Connection: {connection_hdr}\r\n"
-        )
-        if keep_alive:
-            headers_str += "Keep-Alive: timeout=30, max=100\r\n"
-        headers_str += "\r\n"
-        client_socket.sendall(headers_str.encode() + body.encode())
-        logger.info(f"[{thread_id}] Sending HTML file: {os.path.basename(file_path)} ({len(body.encode())} bytes)")
+            body_bytes = f.read().encode()
+        headers = _standard_headers(content_type, len(body_bytes), keep_alive)
+        _send_response(client_socket, "HTTP/1.1 200 OK", headers, body_bytes)
+        logger.info(f"[{thread_id}] Sending HTML file: {os.path.basename(file_path)} ({len(body_bytes)} bytes)")
+        transferred = len(body_bytes)
     else:
         filename = os.path.basename(file_path)
+        total_size = os.path.getsize(file_path)
+        headers = _standard_headers(content_type, total_size, keep_alive)
+        headers["Content-Disposition"] = f"attachment; filename=\"{filename}\""
+        # Send headers first
+        _send_response(client_socket, "HTTP/1.1 200 OK", headers)
+        # Stream file in chunks
+        transferred = 0
         with open(file_path, 'rb') as f:
-            body = f.read()
-        headers_str = (
-            f"HTTP/1.1 200 OK\r\n"
-            f"Date: {date_hdr}\r\n"
-            f"Server: {server_hdr}\r\n"
-            f"Content-Type: {content_type}\r\n"
-            f"Content-Length: {len(body)}\r\n"
-            f"Content-Disposition: attachment; filename=\"{filename}\"\r\n"
-            f"Connection: {connection_hdr}\r\n"
-        )
-        if keep_alive:
-            headers_str += "Keep-Alive: timeout=30, max=100\r\n"
-        headers_str += "\r\n"
-        client_socket.sendall(headers_str.encode() + body)
-        logger.info(f"[{thread_id}] Sending binary file: {filename} ({len(body)} bytes)")
+            while True:
+                chunk = f.read(8192)
+                if not chunk:
+                    break
+                client_socket.sendall(chunk)
+                transferred += len(chunk)
+        logger.info(f"[{thread_id}] Sending binary file: {filename} ({transferred} bytes)")
     
-    logger.info(f"[{thread_id}] Response: 200 OK ({len(body)} bytes transferred)")
+    logger.info(f"[{thread_id}] Response: 200 OK ({transferred} bytes transferred)")
     return True
 
 def handle_post_upload(client_socket, request, headers, path, keep_alive, logger, thread_id):
     # only accept JSON to /upload endpoint
     if path != '/upload':
         logger.warning(f"[{thread_id}] POST to non-upload endpoint: {path}")
-        client_socket.sendall(b"HTTP/1.1 405 Method Not Allowed\r\nConnection: close\r\n\r\n")
+        _send_error(client_socket, 405, "Method Not Allowed", keep_alive=False)
         return False
     content_type = headers.get('content-type', '')
     if 'application/json' not in content_type:
         logger.warning(f"[{thread_id}] Invalid content type for POST: {content_type}")
-        client_socket.sendall(b"HTTP/1.1 415 Unsupported Media Type\r\nConnection: close\r\n\r\n")
+        _send_error(client_socket, 415, "Unsupported Media Type", keep_alive=False)
         return False
     header_end = request.find('\r\n\r\n')
     if header_end == -1:
         logger.warning(f"[{thread_id}] Malformed POST request")
-        client_socket.sendall(b"HTTP/1.1 400 Bad Request\r\nConnection: close\r\n\r\n")
+        _send_error(client_socket, 400, "Bad Request", keep_alive=False)
         return False
     body = request[header_end + 4:]
     try:
@@ -251,7 +300,7 @@ def handle_post_upload(client_socket, request, headers, path, keep_alive, logger
         logger.info(f"[{thread_id}] Created file: {fname}")
     except Exception as e:
         logger.error(f"[{thread_id}] Failed to create file: {e}")
-        client_socket.sendall(b"HTTP/1.1 500 Internal Server Error\r\nConnection: close\r\n\r\n")
+        _send_error(client_socket, 500, "Internal Server Error", keep_alive=False)
         return False
 
     resp_obj = {
@@ -260,21 +309,8 @@ def handle_post_upload(client_socket, request, headers, path, keep_alive, logger
         "filepath": f"/uploads/{fname}"
     }
     resp_body = json.dumps(resp_obj)
-    date_hdr = rfc7231_date()
-    server_hdr = 'Multi-threaded HTTP Server'
-    connection_hdr = 'keep-alive' if keep_alive else 'close'
-    headers_str = (
-        f"HTTP/1.1 201 Created\r\n"
-        f"Date: {date_hdr}\r\n"
-        f"Server: {server_hdr}\r\n"
-        f"Content-Type: application/json\r\n"
-        f"Content-Length: {len(resp_body.encode())}\r\n"
-        f"Connection: {connection_hdr}\r\n"
-    )
-    if keep_alive:
-        headers_str += "Keep-Alive: timeout=30, max=100\r\n"
-    headers_str += "\r\n"
-    client_socket.sendall(headers_str.encode() + resp_body.encode())
+    headers = _standard_headers("application/json", len(resp_body.encode()), keep_alive)
+    _send_response(client_socket, "HTTP/1.1 201 Created", headers, resp_body.encode())
     logger.info(f"[{thread_id}] Response: 201 Created")
     return True
 
@@ -293,42 +329,66 @@ def start_server(host='127.0.0.1', port=8080, max_workers=10):
     logger.info("Serving files from 'resources' directory")
     logger.info("Press Ctrl+C to stop the server")
 
-    executor = ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="Thread")
-    active_connections = 0
-    
-    def handle_connection_with_503(client_socket, client_address, host, port, logger):
-        """Handle connection with 503 Service Unavailable if thread pool is full"""
-        try:
-            handle_client(client_socket, client_address, host, port, logger)
-        except Exception as e:
-            logger.error(f"Error in connection handler: {e}")
+    # Bounded connection queue and worker threads
+    conn_queue: queue.Queue[tuple] = queue.Queue(maxsize=100)
+    active_lock = threading.Lock()
+    active_count = 0
+
+    def worker_loop():
+        nonlocal active_count
+        while True:
+            client_socket, client_address = conn_queue.get()
+            thread_id = threading.current_thread().name
+            logger.info(f"Connection dequeued, assigned to {thread_id}")
+            with active_lock:
+                active_count += 1
             try:
-                client_socket.sendall(b"HTTP/1.1 503 Service Unavailable\r\nRetry-After: 30\r\nConnection: close\r\n\r\n")
-                client_socket.close()
-            except:
-                pass
-    
+                handle_client(client_socket, client_address, host, port, logger)
+            except Exception as e:
+                logger.error(f"Error in connection handler: {e}")
+                try:
+                    _send_error(client_socket, 503, "Service Unavailable", keep_alive=False)
+                except Exception:
+                    pass
+            finally:
+                with active_lock:
+                    active_count -= 1
+                conn_queue.task_done()
+
+    # Start worker threads
+    for i in range(max_workers):
+        t = threading.Thread(target=worker_loop, name=f"Thread-{i+1}", daemon=True)
+        t.start()
+
     try:
         while True:
             try:
                 client_socket, client_address = server_socket.accept()
-                active_connections += 1
-                
-                # Submit to thread pool
                 try:
-                    executor.submit(handle_connection_with_503, client_socket, client_address, host, port, logger)
-                except RuntimeError:
-                    # Thread pool is shutting down
-                    logger.warning("Thread pool shutting down, rejecting connection")
-                    client_socket.sendall(b"HTTP/1.1 503 Service Unavailable\r\nRetry-After: 30\r\nConnection: close\r\n\r\n")
-                    client_socket.close()
-                    continue
-                
-                # Log thread pool status periodically
-                if active_connections % 10 == 0:
-                    # Get approximate thread count
-                    thread_count = len([t for t in threading.enumerate() if t.name.startswith("Thread")])
-                    logger.info(f"Thread pool status: {thread_count}/{max_workers} active")
+                    conn_queue.put_nowait((client_socket, client_address))
+                    # Log queueing if queue had items
+                    if conn_queue.qsize() > 0:
+                        logger.warning("Warning: Thread pool saturated, queuing connection")
+                except queue.Full:
+                    logger.warning("Connection queue full, returning 503")
+                    try:
+                        hdrs = {
+                            "Date": rfc7231_date(),
+                            "Server": "Multi-threaded HTTP Server",
+                            "Retry-After": "30",
+                            "Connection": "close",
+                            "Content-Length": "0",
+                        }
+                        _send_response(client_socket, "HTTP/1.1 503 Service Unavailable", hdrs)
+                    except Exception:
+                        pass
+                    finally:
+                        client_socket.close()
+
+                # Periodic thread pool status
+                if (time.time() % 30) < 0.05:  # approx every 30s
+                    with active_lock:
+                        logger.info(f"Thread pool status: {active_count}/{max_workers} active")
                     
             except Exception as e:
                 logger.error(f"Error accepting connection: {e}")
@@ -337,8 +397,7 @@ def start_server(host='127.0.0.1', port=8080, max_workers=10):
     except KeyboardInterrupt:
         logger.info("Stopping server...")
     finally:
-        logger.info("Shutting down thread pool...")
-        executor.shutdown(wait=True)
+        logger.info("Shutting down...")
         server_socket.close()
         logger.info("Server stopped")
 

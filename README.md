@@ -94,3 +94,42 @@ Assignment Requirements Completed:
 - All required test files and documentation
 
 
+
+## What We Implemented (Summary)
+
+- Connection Queue and Workers:
+  - Bounded pending connection queue (max 100) with worker threads (`Thread-1..N`).
+  - Logs when connections are queued and when dequeued/assigned.
+  - Returns `503 Service Unavailable` with `Retry-After` when queue is full.
+
+- Robust HTTP Parsing (8192-byte cap):
+  - Reads until `\r\n\r\n`, respects `Content-Length`, and caps total request size at 8192 bytes.
+  - Proper status handling for malformed requests (400) and unsupported methods (405).
+
+- Streaming File Responses:
+  - Streams files in 8KB chunks with accurate `Content-Length` and `Content-Disposition` for downloads.
+  - Serves `.html` inline with `text/html; charset=utf-8`; `.txt/.png/.jpg/.jpeg` as `application/octet-stream`.
+
+- Standardized Headers and Errors:
+  - All responses include `Date`, `Server`, `Content-Type`, `Content-Length`, `Connection`, and `Keep-Alive` (when applicable).
+  - Error responses return JSON bodies (e.g., `{ "error": "Forbidden" }`).
+
+- Security:
+  - Host header validation (`localhost:PORT`, `127.0.0.1:PORT` allowed; otherwise 403; missing Host ⇒ 400).
+  - Path traversal protection using canonical checks; blocks `..`, absolute paths, and UNC paths.
+
+- Keep-Alive and Limits:
+  - HTTP/1.1 keep-alive by default; honors `Connection: close`.
+  - `Keep-Alive: timeout=30, max=100`; up to 100 requests per persistent connection.
+
+- Testing and Logs:
+  - `testing/client.py` enhanced to read full responses using `Content-Length`.
+  - Test logs: `testing/test_execution.log`; summary: `testing/test_results.md`; server logs: `server.log`.
+  - Verified: basic GET/POST, 10MB binary download, 5 concurrent downloads, negative/security scenarios.
+
+- How to Re-run Clean Tests:
+  1. Clean artifacts: remove `testing/downloads/*`, `resources/uploads/upload_*.json`, reset `server.log` and test logs.
+  2. Start server: `python server.py 8080 127.0.0.1 10`.
+  3. Run client once: `python testing/client.py`.
+  4. For concurrent runs, execute multiple clients in parallel or use the provided scripts in the test log steps.
+
