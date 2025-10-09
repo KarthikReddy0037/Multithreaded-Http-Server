@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Page - HTTP Server Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #c3e6cb;
+            margin: 20px 0;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #bee5eb;
+            margin: 20px 0;
+        }
+        ul {
+            line-height: 1.6;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Sample HTML Page</h1>
+        
+        <div class="success">
+            <strong>✅ Success!</strong> The HTTP server successfully served this HTML file!
+        </div>
+        
+        <div class="info">
+            <h3>Server Capabilities Demonstrated:</h3>
+            <ul>
+                <li>✅ HTML file serving with proper MIME types</li>
+                <li>✅ CSS styling support</li>
+                <li>✅ UTF-8 encoding support</li>
+                <li>✅ Proper HTTP response headers</li>
+                <li>✅ Multi-threaded request handling</li>
+            </ul>
+        </div>
+        
+        <h3>🔗 Navigation:</h3>
+        <ul>
+            <li><a href="/">← Back to Home Page</a></li>
+            <li><a href="/test.txt">📄 View test.txt</a></li>
+            <li><a href="/resources/">📁 Browse resources directory</a></li>
+        </ul>
+        
+        <h3>🧪 Test Different Features:</h3>
+        <ul>
+            <li>Try accessing non-existent files to test 404 errors</li>
+            <li>Use curl with -I flag to test HEAD requests</li>
+            <li>Open multiple browser tabs to test multi-threading</li>
+            <li>Check the server.log file for request logging</li>
+        </ul>
+        
+        <p style="text-align: center; margin-top: 30px; color: #666;">
+            <em>This page demonstrates the HTTP server's file serving capabilities!</em>
+        </p>
+    </div>
+</body>
+</html>

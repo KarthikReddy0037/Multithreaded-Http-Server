@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-threaded HTTP Server</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            background: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        .status {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        .info-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196F3;
+        }
+        .code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-threaded HTTP Server</h1>
+        
+        <div class="info-box">
+            <h3>Server Features Implemented:</h3>
+            <ul class="feature-list">
+                <li>HTTP Request Parsing <span class="status">COMPLETE</span></li>
+                <li>Multi-threading Support <span class="status">COMPLETE</span></li>
+                <li>File Serving (HTML, CSS, JS, Images) <span class="status">COMPLETE</span></li>
+                <li>Directory Listing <span class="status">COMPLETE</span></li>
+                <li>Error Handling (404, 500, etc.) <span class="status">COMPLETE</span></li>
+                <li>Security Features (Path Traversal Protection) <span class="status">COMPLETE</span></li>
+                <li>Logging System <span class="status">COMPLETE</span></li>
+                <li>HEAD Request Support <span class="status">COMPLETE</span></li>
+                <li>MIME Type Detection <span class="status">COMPLETE</span></li>
+                <li>Command Line Configuration <span class="status">COMPLETE</span></li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>How to Use:</h3>
+            <div class="code">
+                # Start server with default settings (localhost:8080)<br>
+                python3 server.py<br><br>
+                
+                # Start with custom port<br>
+                python3 server.py 9000<br><br>
+                
+                # Start with custom host and port<br>
+                python3 server.py 9000 0.0.0.0<br><br>
+                
+                # Start with custom document root<br>
+                python3 server.py 8080 127.0.0.1 /path/to/files
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>Test Files Available:</h3>
+            <ul>
+                <li><a href="test.txt" style="color: #FFE082;">test.txt</a> - Simple text file</li>
+          
