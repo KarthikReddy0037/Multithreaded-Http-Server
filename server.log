@@ -334,3 +334,10 @@
 [2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Missing Host header - Returning 400
 [2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
 [2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55927
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Request: GET / HTTP/1.1
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Sent HTML: index.html (4716 bytes)
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 17:07:49] [ThreadPoolExecutor-0_0] Connection closed

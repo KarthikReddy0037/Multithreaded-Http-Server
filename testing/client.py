@@ -92,10 +92,10 @@ def download_file(url_path, save_name, client_id):
         save_path = f"{DOWNLOADS_DIR}/{save_name}"
         with open(save_path, 'wb') as f:
             f.write(body)
-        log_execution(f"[Client-{client_id}] ✅ Downloaded {url_path} -> {save_name} ({len(body)} bytes)")
+        log_execution(f"[Client-{client_id}] Downloaded {url_path} -> {save_name} ({len(body)} bytes)")
         return True, len(body)
     
-    log_execution(f"[Client-{client_id}] ❌ Failed to download {url_path}")
+    log_execution(f"[Client-{client_id}] Failed to download {url_path}")
     return False, 0
 
 
@@ -111,10 +111,10 @@ def upload_json(data, client_id):
     response = http_request(request)
     
     if response and b"201 Created" in response:
-        log_execution(f"[Client-{client_id}] ✅ POST /upload -> 201 Created")
+        log_execution(f"[Client-{client_id}] POST /upload -> 201 Created")
         return True
     
-    log_execution(f"[Client-{client_id}] ❌ POST /upload failed")
+    log_execution(f"[Client-{client_id}] POST /upload failed")
     return False
 
 
@@ -127,10 +127,10 @@ def test_error_response(client_id, method, path, headers, expected_code, descrip
     
     response = http_request(request)
     if response and str(expected_code).encode() in response:
-        log_execution(f"[Client-{client_id}] ✅ {description} -> {expected_code}")
+        log_execution(f"[Client-{client_id}] {description} -> {expected_code}")
         return True
     
-    log_execution(f"[Client-{client_id}] ❌ {description} test failed")
+    log_execution(f"[Client-{client_id}] {description} test failed")
     return False
 
 
@@ -146,17 +146,17 @@ def calculate_checksum(filepath):
 def verify_file_integrity(original_path, downloaded_path, client_id):
     """Verify downloaded file matches original via checksum"""
     if not os.path.exists(downloaded_path):
-        log_execution(f"[Client-{client_id}] ❌ File not found: {downloaded_path}")
+        log_execution(f"[Client-{client_id}] File not found: {downloaded_path}")
         return False
     
     orig_checksum = calculate_checksum(original_path)
     down_checksum = calculate_checksum(downloaded_path)
     
     if orig_checksum == down_checksum:
-        log_execution(f"[Client-{client_id}] ✅ Checksum verified: {os.path.basename(original_path)} ({orig_checksum[:8]}...)")
+        log_execution(f"[Client-{client_id}] Checksum verified: {os.path.basename(original_path)} ({orig_checksum[:8]}...)")
         return True
     
-    log_execution(f"[Client-{client_id}] ❌ Checksum mismatch: {os.path.basename(original_path)}")
+    log_execution(f"[Client-{client_id}] Checksum mismatch: {os.path.basename(original_path)}")
     return False
 
 
@@ -201,7 +201,7 @@ def client_task(client_id):
         success, size = download_file(url, save_name, client_id)
         local_results["binary"].append((test_name, success))
         if size > 1024*1024:
-            log_execution(f"[Client-{client_id}] ✅ Large file transferred: {size/(1024*1024):.2f} MB")
+            log_execution(f"[Client-{client_id}] Large file transferred: {size/(1024*1024):.2f} MB")
     
     # Checksum Verification
     log_execution(f"[Client-{client_id}] --- Checksum Verification ---")
@@ -244,7 +244,7 @@ def client_task(client_id):
     response = http_request(request)
     success = response and b"415" in response
     if success:
-        log_execution(f"[Client-{client_id}] ✅ POST /upload (text/plain) -> 415 Unsupported Media Type")
+        log_execution(f"[Client-{client_id}] POST /upload (text/plain) -> 415 Unsupported Media Type")
     local_results["errors"].append(("415 Unsupported Media Type", success))
     
     # Security Tests
@@ -264,7 +264,7 @@ def client_task(client_id):
     response = http_request(request)
     success = response and b"400" in response
     if success:
-        log_execution(f"[Client-{client_id}] ✅ GET without Host header -> 400 Bad Request")
+        log_execution(f"[Client-{client_id}] GET without Host header -> 400 Bad Request")
     local_results["security"].append(("Missing host rejection", success))
     
     log_execution(f"[Client-{client_id}] ========== COMPLETED ==========")
@@ -312,7 +312,7 @@ def run_concurrent_tests():
     generate_summary_report(duration)
     save_execution_log()
     
-    log_execution("\n✅ All tests completed! Check test_results.md for detailed report.")
+    log_execution("\nAll tests completed! Check test_results.md for detailed report.")
 
 
 def generate_summary_report(duration):
@@ -339,7 +339,7 @@ def generate_summary_report(duration):
         report.append("\n| Client | Test | Result |")
         report.append("|--------|------|--------|")
         for client_id, test_name, success in test_results[category]:
-            status = "✅ PASS" if success else "❌ FAIL"
+            status = "PASS" if success else "FAIL"
             report.append(f"| Client-{client_id} | {test_name} | {status} |")
         report.append("")
     
@@ -364,9 +364,9 @@ def generate_summary_report(duration):
     # Concurrency summary
     report.extend([
         "\n## 6. Concurrency Tests\n",
-        "✅ Successfully handled 3 simultaneous client connections",
-        "✅ Multiple clients downloading files simultaneously",
-        "✅ Large files (>1MB) transferred concurrently without corruption"
+        "Successfully handled 3 simultaneous client connections",
+        "Multiple clients downloading files simultaneously",
+        "Large files (>1MB) transferred concurrently without corruption"
     ])
     
     # Overall summary
@@ -381,13 +381,13 @@ def generate_summary_report(duration):
         f"**Passed:** {passed_tests}",
         f"**Failed:** {total_tests - passed_tests}",
         f"**Success Rate:** {(passed_tests/total_tests*100):.1f}%",
-        f"\n### {'✅ ALL TESTS PASSED!' if passed_tests == total_tests else f'⚠️ {total_tests - passed_tests} test(s) failed'}"
+        f"\n### {'ALL TESTS PASSED!' if passed_tests == total_tests else f'{total_tests - passed_tests} test(s) failed'}"
     ])
     
     with open(TEST_RESULTS_FILE, 'w') as f:
         f.write('\n'.join(report))
     
-    log_execution(f"\n📄 Test results saved to: {TEST_RESULTS_FILE}")
+    log_execution(f"\nTest results saved to: {TEST_RESULTS_FILE}")
 
 
 def save_execution_log():
@@ -395,7 +395,7 @@ def save_execution_log():
     with open(TEST_EXECUTION_LOG, 'w') as f:
         f.write('\n'.join(execution_logs))
     
-    log_execution(f"📄 Execution log saved to: {TEST_EXECUTION_LOG}")
+    log_execution(f"Execution log saved to: {TEST_EXECUTION_LOG}")
 
 
 if __name__ == "__main__":

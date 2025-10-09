@@ -1,135 +1,288 @@
 # Multi-threaded HTTP Server
 
+A HTTP/1.1 server implementation using Python socket programming with thread pool concurrency, binary file transfers, and security features.
+
 ## Overview
-This is a multi-threaded HTTP server implementation built using Python. It supports GET and POST requests, serves static files, and handles JSON uploads. The server uses ThreadPoolExecutor to manage concurrent client connections efficiently.
+
+HTTP/1.1 server supporting:
+- Thread pool-based concurrency (configurable size)
+- GET/POST request handling
+- Binary file transfers with chunked reading (8KB chunks)
+- Keep-Alive persistent connections
+- Path traversal & host validation security
+- Comprehensive logging
+
+**Requirements:** Python 3.8+ (no external dependencies)
+
+---
 
 ## Build and Run Instructions
 
-### Prerequisites
-- Python 3.8 or above
+### Installation
 
-### Setup
-1. Clone or download this repository
-2. Create a folder named `resources` in the project directory
-3. Place your static files (e.g., index.html) inside the `resources` folder
-4. Create a subdirectory `resources/uploads` for uploaded files
-
-### Run the Server
+**Clone Repository**
 ```bash
-python server.py [port] [host] [thread_pool_size]
+git clone <your-repository-url>
+cd "Multithreaded Http Server"
 ```
-Example:
+
+**Create Directories**
 ```bash
-python server.py 8080 127.0.0.1 10
+mkdir -p resources/uploads testing/downloads
 ```
-The server will start at:
-```
-http://127.0.0.1:8080
-```
-Logs will be stored in `server.log`.
 
-## Binary Transfer Implementation
+### Running the Server
 
-The server supports binary file transfers for .png, .jpg, .jpeg, and .txt files using the Content-Disposition: attachment header. When a client requests such a file, the server reads it in binary mode and transmits it directly to the client with accurate Content-Length and Content-Type headers.
+**Command Format:**
+```bash
+python3 server.py [PORT] [HOST] [MAX_THREADS]
+```
 
-Example:
-Request:
+**Examples:**
+```bash
+# Default (127.0.0.1:8080, 10 threads)
+python3 server.py
+
+# Custom port
+python3 server.py 9000
+
+# Custom host and port
+python3 server.py 8000 0.0.0.0
+
+# Full configuration
+python3 server.py 8000 0.0.0.0 20
 ```
-GET /image.png HTTP/1.1
+
+### Testing
+
+Run the test suite:
+```bash
+python3 testing/client.py
 ```
-Response Headers:
+
+Test Results: 57/57 tests passing (100%)
+
+### Accessing the Server
+
+**Browser:**
+- http://127.0.0.1:8080/
+- http://127.0.0.1:8080/sample.html
+- http://127.0.0.1:8080/goku.png
+
+**cURL:**
+```bash
+# GET request
+curl http://127.0.0.1:8080/
+
+# Download file
+curl -O http://127.0.0.1:8080/goku.png
+
+# POST JSON
+curl -X POST http://127.0.0.1:8080/upload \
+  -H "Content-Type: application/json" \
+  -d '{"name": "test"}'
 ```
-HTTP/1.1 200 OK
-Content-Type: application/octet-stream
-Content-Disposition: attachment; filename="image.png"
-Content-Length: <size>
-```
+
+---
 
 ## Thread Pool Architecture
 
-The server uses Python's built-in ThreadPoolExecutor to manage client connections efficiently.
+### Implementation
 
-Key Points:
-- Each incoming client connection is handled by a worker thread
-- The pool size can be configured via command-line arguments
-- The main thread accepts connections and submits tasks to the pool
-- Thread pool saturation is logged and queued connections are handled gracefully
+Uses Python's `ThreadPoolExecutor`:
 
-This design ensures concurrency, scalability, and thread safety while preventing resource exhaustion.
+```python
+with ThreadPoolExecutor(max_workers=10) as executor:
+    while True:
+        client_sock, client_addr = server_socket.accept()
+        executor.submit(handle_client, client_sock, client_addr, host, port, logger)
+```
 
-## Security Measures Implemented
+### Features
 
-1. Directory Traversal Protection
-   - Validates all file paths using the is_good_path() function to prevent access outside the resources directory
+**Resource Management**
+- Pre-allocated thread pool (default: 10 threads)
+- Configurable pool size via command-line
+- Automatic thread lifecycle management
 
-2. Content-Type Validation
-   - Ensures only supported file types are served
-   - Blocks malicious or unsupported file extensions
+**Request Queuing**
+- Automatic queuing when threads are busy
+- FIFO ordering
+- Prevents resource exhaustion
 
-3. Timeouts and Error Handling
-   - Client connections are automatically closed after inactivity
-   - All major operations include try-except blocks for safe error handling
+**Thread Safety**
+- Unique thread ID for each request
+- No shared state between handlers
+- Thread-safe logging and file operations
 
-4. Logging
-   - Every request, response, and error is logged with timestamps and thread identifiers in both console and server.log
+**Monitoring**
+- Status logged every 10 connections
+- Example: `Thread pool status: 8 threads active, 40 total connections`
+
+---
+
+## Binary Transfer Implementation
+
+### Chunked Transfer
+
+Memory-efficient implementation using 8KB chunks:
+
+```python
+CHUNK_SIZE = 8192  # 8KB chunks
+
+with open(file_path, 'rb') as f:
+    while chunk := f.read(CHUNK_SIZE):
+        sock.sendall(chunk)
+```
+
+### Benefits
+
+**Memory Efficiency**
+- Large files don't load entirely into memory
+- Only 8KB in memory at any time
+- Supports concurrent large file transfers
+
+**Performance**
+- Streaming starts immediately (low latency)
+- Consistent performance regardless of file size
+- No buffering delays
+
+**Binary Mode**
+- Files opened with 'rb' flag
+- No encoding/decoding overhead
+- Byte-for-byte integrity preserved
+
+### HTTP Headers
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+Content-Length: [file size]
+Content-Disposition: attachment; filename="file.png"
+Connection: keep-alive
+
+[binary data]
+```
+
+### Data Integrity
+
+- Content-Length ensures complete transfer
+- MD5 checksum verification in tests
+- No corruption in concurrent transfers
+- Tested with 10MB files successfully
+
+---
+
+## Security Measures
+
+### 1. Path Traversal Protection
+
+```python
+def is_safe_path(path):
+    path = path.lstrip('/')
+    return '..' not in path and not os.path.isabs(path)
+```
+
+Blocks:
+- `/../etc/passwd` → 403 Forbidden
+- `../../config` → 403 Forbidden
+- Absolute paths → 403 Forbidden
+
+### 2. Host Header Validation
+
+```python
+expected_hosts = [f"{server_host}:{server_port}", 
+                  f"localhost:{server_port}", 
+                  f"127.0.0.1:{server_port}"]
+
+if not host_header:
+    return 400
+if host_header not in expected_hosts:
+    return 403
+```
+
+Prevents:
+- Host Header Injection attacks
+- Cache poisoning
+- Request forgery
+
+### 3. Input Validation
+
+**Request Limits**
+- Max 8KB for headers
+- Content-Type validation for POST
+- JSON parsing with error handling
+
+**File Extension Whitelist**
+- Only .html, .txt, .jpg, .jpeg, .png allowed
+- Prevents serving sensitive files
+
+**Error Handling**
+- 30-second timeout prevents slowloris
+- Max 100 requests per connection
+- Sockets closed in finally blocks
+
+### 4. Security Logging
+
+All security events logged:
+```
+[2025-10-09 16:48:17] [Thread-1] Blocked path traversal: /../etc/passwd
+[2025-10-09 16:48:17] [Thread-1] Response: 403 Forbidden
+```
+
+---
 
 ## Known Limitations
 
-- No HTTPS support (plain HTTP only)
-- Does not handle partial content requests (e.g., Range headers)
-- No persistent caching or compression mechanisms
-- Limited to simple static file serving and JSON uploads
+### Current Limitations
 
-## About
+1. **Single Process** - Not horizontally scalable, limited by GIL
+2. **No HTTPS** - Only HTTP protocol, no encryption
+3. **Limited Methods** - Only GET and POST (no PUT, DELETE, etc.)
+4. **No Caching** - No cache-control or ETag support
+5. **Static Files Only** - No server-side scripting
+6. **No Compression** - Files sent uncompressed
+7. **No Authentication** - All resources publicly accessible
+8. **Large Files** - Files >100MB may degrade performance
+9. **No Range Requests** - Cannot resume interrupted downloads
+10. **Fixed Thread Pool** - No dynamic scaling
 
-This project implements all requirements from the Computer Networking assignment for building a multi-threaded HTTP server using socket programming. All features including multi-threading, binary file transfers, JSON uploads, security measures, and comprehensive logging have been successfully implemented and tested.
+### Future Enhancements
 
-Assignment Requirements Completed:
-- Multi-threaded architecture with configurable thread pool
-- HTTP/1.1 compliance with Keep-Alive support
-- Binary file transfers with proper Content-Disposition headers
-- JSON upload handling with file creation
-- Comprehensive security including path traversal protection
-- Detailed logging with timestamps and thread tracking
-- All required test files and documentation
+- HTTPS/TLS support
+- HTTP/2 protocol
+- Compression (gzip, brotli)
+- Range requests for partial content
+- WebSocket support
+- Caching with ETags
+- Rate limiting
+- Multi-process workers
 
+---
 
+## Project Structure
 
-## What We Implemented (Summary)
+```
+Multithreaded Http Server/
+├── server.py              # Main server (358 lines)
+├── resources/             # Static files
+│   ├── *.html            # HTML files
+│   ├── *.txt             # Text files
+│   ├── *.png             # PNG images (up to 10MB)
+│   ├── *.jpeg            # JPEG images
+│   └── uploads/          # JSON uploads
+├── testing/
+│   ├── client.py         # Test suite (403 lines)
+│   ├── test_results.md   # Test report
+│   └── test_execution.log
+├── server.log            # Server logs
+└── README.md             # Documentation
+```
 
-- Connection Queue and Workers:
-  - Bounded pending connection queue (max 100) with worker threads (`Thread-1..N`).
-  - Logs when connections are queued and when dequeued/assigned.
-  - Returns `503 Service Unavailable` with `Retry-After` when queue is full.
+---
 
-- Robust HTTP Parsing (8192-byte cap):
-  - Reads until `\r\n\r\n`, respects `Content-Length`, and caps total request size at 8192 bytes.
-  - Proper status handling for malformed requests (400) and unsupported methods (405).
+## Author
 
-- Streaming File Responses:
-  - Streams files in 8KB chunks with accurate `Content-Length` and `Content-Disposition` for downloads.
-  - Serves `.html` inline with `text/html; charset=utf-8`; `.txt/.png/.jpg/.jpeg` as `application/octet-stream`.
-
-- Standardized Headers and Errors:
-  - All responses include `Date`, `Server`, `Content-Type`, `Content-Length`, `Connection`, and `Keep-Alive` (when applicable).
-  - Error responses return JSON bodies (e.g., `{ "error": "Forbidden" }`).
-
-- Security:
-  - Host header validation (`localhost:PORT`, `127.0.0.1:PORT` allowed; otherwise 403; missing Host ⇒ 400).
-  - Path traversal protection using canonical checks; blocks `..`, absolute paths, and UNC paths.
-
-- Keep-Alive and Limits:
-  - HTTP/1.1 keep-alive by default; honors `Connection: close`.
-  - `Keep-Alive: timeout=30, max=100`; up to 100 requests per persistent connection.
-
-- Testing and Logs:
-  - `testing/client.py` enhanced to read full responses using `Content-Length`.
-  - Test logs: `testing/test_execution.log`; summary: `testing/test_results.md`; server logs: `server.log`.
-  - Verified: basic GET/POST, 10MB binary download, 5 concurrent downloads, negative/security scenarios.
-
-- How to Re-run Clean Tests:
-  1. Clean artifacts: remove `testing/downloads/*`, `resources/uploads/upload_*.json`, reset `server.log` and test logs.
-  2. Start server: `python server.py 8080 127.0.0.1 10`.
-  3. Run client once: `python testing/client.py`.
-  4. For concurrent runs, execute multiple clients in parallel or use the provided scripts in the test log steps.
+**Lingaraghavendra**  
+Assignment: Multi-threaded HTTP Server Using Socket Programming  
 
