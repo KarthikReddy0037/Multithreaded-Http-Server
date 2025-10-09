@@ -1,0 +1,13 @@
+This is the second test text file for HTTP server testing.
+
+Server Requirements:
+- Must serve this file with Content-Type: text/plain
+- Must handle concurrent requests to multiple text files
+- Must return proper HTTP status codes
+
+Testing scenarios:
+1. Direct file access via GET request
+2. Multiple simultaneous requests
+3. Error handling for non-existent files
+
+This file helps verify text file serving capabilities.

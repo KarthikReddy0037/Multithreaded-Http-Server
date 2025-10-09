@@ -1,58 +1,100 @@
-[3-clients test] 2025-10-09 15:53:46
-[C2] [15:53:46] ==================================================
-[C2] [15:53:46] HTTP SERVER TEST CLIENT
-[C2] [15:53:46] ==================================================
-[C2] [15:53:46] Testing file downloads...
-[C2] [15:53:46] Downloaded / -> testing/downloads/downloaded_homepage.html (4716 bytes)
-[C2] [15:53:46] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
-[C2] [15:53:46] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
-[C2] [15:53:46] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (29794 bytes)
-[C2] [15:53:46] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (29794 bytes)
-[C2] [15:53:46] JSON upload to /upload - PASSED (201 Created)
-[C2] [15:53:46] ==================================================
-[C2] [15:53:46] TESTS COMPLETED: 6/6 PASSED
-[C2] [15:53:46] ==================================================
-[C2] [15:53:46] Downloaded files:
-[C2] [15:53:46]   downloaded_homepage.html (4716 bytes)
-[C2] [15:53:46]   downloaded_sample.html (2800 bytes)
-[C2] [15:53:46]   downloaded_test1.txt (289 bytes)
-[C2] [15:53:46]   downloaded_anime.jpeg (29794 bytes)
-[C2] [15:53:46]   downloaded_goku.png (29794 bytes)
-[C3] [15:53:46] ==================================================
-[C3] [15:53:46] HTTP SERVER TEST CLIENT
-[C3] [15:53:46] ==================================================
-[C3] [15:53:46] Testing file downloads...
-[C3] [15:53:46] Downloaded / -> testing/downloads/downloaded_homepage.html (4716 bytes)
-[C3] [15:53:46] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
-[C3] [15:53:46] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
-[C3] [15:53:46] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (29794 bytes)
-[C3] [15:53:46] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (29794 bytes)
-[C3] [15:53:46] JSON upload to /upload - PASSED (201 Created)
-[C3] [15:53:46] ==================================================
-[C3] [15:53:46] TESTS COMPLETED: 6/6 PASSED
-[C3] [15:53:46] ==================================================
-[C3] [15:53:46] Downloaded files:
-[C3] [15:53:46]   downloaded_homepage.html (4716 bytes)
-[C3] [15:53:46]   downloaded_sample.html (2800 bytes)
-[C3] [15:53:46]   downloaded_test1.txt (289 bytes)
-[C3] [15:53:46]   downloaded_anime.jpeg (29794 bytes)
-[C3] [15:53:46]   downloaded_goku.png (29794 bytes)
-[C1] [15:53:46] ==================================================
-[C1] [15:53:46] HTTP SERVER TEST CLIENT
-[C1] [15:53:46] ==================================================
-[C1] [15:53:46] Testing file downloads...
-[C1] [15:53:46] Downloaded / -> testing/downloads/downloaded_homepage.html (4716 bytes)
-[C1] [15:53:46] Downloaded /sample.html -> testing/downloads/downloaded_sample.html (2800 bytes)
-[C1] [15:53:46] Downloaded /test1.txt -> testing/downloads/downloaded_test1.txt (289 bytes)
-[C1] [15:53:46] Downloaded /anime.jpeg -> testing/downloads/downloaded_anime.jpeg (29794 bytes)
-[C1] [15:53:46] Downloaded /goku.png -> testing/downloads/downloaded_goku.png (29794 bytes)
-[C1] [15:53:46] JSON upload to /upload - PASSED (201 Created)
-[C1] [15:53:46] ==================================================
-[C1] [15:53:46] TESTS COMPLETED: 6/6 PASSED
-[C1] [15:53:46] ==================================================
-[C1] [15:53:46] Downloaded files:
-[C1] [15:53:46]   downloaded_homepage.html (4716 bytes)
-[C1] [15:53:46]   downloaded_sample.html (2800 bytes)
-[C1] [15:53:46]   downloaded_test1.txt (289 bytes)
-[C1] [15:53:46]   downloaded_anime.jpeg (29794 bytes)
-[C1] [15:53:46]   downloaded_goku.png (29794 bytes)
+[2025-10-09 16:31:20] ================================================================================
+[2025-10-09 16:31:20] COMPREHENSIVE HTTP SERVER TEST SUITE
+[2025-10-09 16:31:20] ================================================================================
+[2025-10-09 16:31:20] Server: http://127.0.0.1:8080
+[2025-10-09 16:31:20] Test Start Time: 2025-10-09 16:31:20
+[2025-10-09 16:31:20] Number of Clients: 3 (concurrent)
+[2025-10-09 16:31:20] ================================================================================
+[2025-10-09 16:31:20] 
+[2025-10-09 16:31:20] Starting 3 concurrent client threads...
+[2025-10-09 16:31:20] [Client-1] ========== STARTED ==========
+[2025-10-09 16:31:20] [Client-1] --- Basic Functionality Tests ---
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded / -> client1_index.html (4716 bytes)
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded /sample.html -> client1_sample.html (2800 bytes)
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded /form.html -> client1_form.html (3551 bytes)
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded /test1.txt -> client1_test1.txt (289 bytes)
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded /test2.txt -> client1_test2.txt (419 bytes)
+[2025-10-09 16:31:20] [Client-1] --- Binary Transfer Tests ---
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded /goku.png -> client1_goku.png (29794 bytes)
+[2025-10-09 16:31:20] [Client-1] ✅ Downloaded /sample.png -> client1_sample.png (15288 bytes)
+[2025-10-09 16:31:20] [Client-2] ========== STARTED ==========
+[2025-10-09 16:31:20] [Client-2] --- Basic Functionality Tests ---
+[2025-10-09 16:31:21] [Client-3] ========== STARTED ==========
+[2025-10-09 16:31:21] [Client-3] --- Basic Functionality Tests ---
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded / -> client2_index.html (4716 bytes)
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded /sample.html -> client2_sample.html (2800 bytes)
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded / -> client3_index.html (4716 bytes)
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded /sample.html -> client3_sample.html (2800 bytes)
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded /form.html -> client2_form.html (3551 bytes)
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded /form.html -> client3_form.html (3551 bytes)
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded /test1.txt -> client2_test1.txt (289 bytes)
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded /test1.txt -> client3_test1.txt (289 bytes)
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded /test2.txt -> client2_test2.txt (419 bytes)
+[2025-10-09 16:31:21] [Client-2] --- Binary Transfer Tests ---
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded /test2.txt -> client3_test2.txt (419 bytes)
+[2025-10-09 16:31:21] [Client-3] --- Binary Transfer Tests ---
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded /goku.png -> client2_goku.png (29794 bytes)
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded /goku.png -> client3_goku.png (29794 bytes)
+[2025-10-09 16:31:21] [Client-1] ✅ Downloaded /Pizigani_1367_Chart_10MB.png -> client1_large.png (10174706 bytes)
+[2025-10-09 16:31:21] [Client-1] ✅ Large file (>1MB) transferred: 9.70 MB
+[2025-10-09 16:31:21] [Client-2] ✅ Downloaded /sample.png -> client2_sample.png (15288 bytes)
+[2025-10-09 16:31:21] [Client-3] ✅ Downloaded /sample.png -> client3_sample.png (15288 bytes)
+[2025-10-09 16:31:21] [Client-1] ✅ Downloaded /anime.jpeg -> client1_anime.jpeg (29794 bytes)
+[2025-10-09 16:31:21] [Client-1] ✅ Downloaded /naruto.jpeg -> client1_naruto.jpeg (15454 bytes)
+[2025-10-09 16:31:21] [Client-1] --- Checksum Verification ---
+[2025-10-09 16:31:22] [Client-1] ✅ Checksum verified: goku.png (42e7b070...)
+[2025-10-09 16:31:23] [Client-1] ✅ Checksum verified: anime.jpeg (42e7b070...)
+[2025-10-09 16:31:23] [Client-1] --- POST/Upload Tests ---
+[2025-10-09 16:31:23] [Client-1] ✅ POST /upload -> 201 Created
+[2025-10-09 16:31:23] [Client-1] --- Error Response Tests ---
+[2025-10-09 16:31:23] [Client-1] ✅ GET /nonexistent.png -> 404 Not Found
+[2025-10-09 16:31:23] [Client-1] ✅ PUT /index.html -> 405 Method Not Allowed
+[2025-10-09 16:31:23] [Client-2] ✅ Downloaded /Pizigani_1367_Chart_10MB.png -> client2_large.png (10174706 bytes)
+[2025-10-09 16:31:23] [Client-2] ✅ Large file (>1MB) transferred: 9.70 MB
+[2025-10-09 16:31:23] [Client-1] ✅ POST /upload (text/plain) -> 415 Unsupported Media Type
+[2025-10-09 16:31:23] [Client-1] --- Security Tests ---
+[2025-10-09 16:31:23] [Client-3] ✅ Downloaded /Pizigani_1367_Chart_10MB.png -> client3_large.png (10174706 bytes)
+[2025-10-09 16:31:23] [Client-3] ✅ Large file (>1MB) transferred: 9.70 MB
+[2025-10-09 16:31:23] [Client-1] ✅ GET /../etc/passwd -> 403 Forbidden (path traversal blocked)
+[2025-10-09 16:31:23] [Client-2] ✅ Downloaded /anime.jpeg -> client2_anime.jpeg (29794 bytes)
+[2025-10-09 16:31:23] [Client-1] ✅ GET with Host: evil.com -> 403 Forbidden
+[2025-10-09 16:31:23] [Client-1] ✅ GET without Host header -> 400 Bad Request
+[2025-10-09 16:31:23] [Client-1] ========== COMPLETED ==========
+[2025-10-09 16:31:23] [Client-2] ✅ Downloaded /naruto.jpeg -> client2_naruto.jpeg (15454 bytes)
+[2025-10-09 16:31:23] [Client-2] --- Checksum Verification ---
+[2025-10-09 16:31:23] [Client-3] ✅ Downloaded /anime.jpeg -> client3_anime.jpeg (29794 bytes)
+[2025-10-09 16:31:23] [Client-3] ✅ Downloaded /naruto.jpeg -> client3_naruto.jpeg (15454 bytes)
+[2025-10-09 16:31:23] [Client-3] --- Checksum Verification ---
+[2025-10-09 16:31:23] [Client-3] ✅ Checksum verified: goku.png (42e7b070...)
+[2025-10-09 16:31:23] [Client-2] ✅ Checksum verified: goku.png (42e7b070...)
+[2025-10-09 16:31:23] [Client-3] ✅ Checksum verified: anime.jpeg (42e7b070...)
+[2025-10-09 16:31:23] [Client-3] --- POST/Upload Tests ---
+[2025-10-09 16:31:23] [Client-2] ✅ Checksum verified: anime.jpeg (42e7b070...)
+[2025-10-09 16:31:23] [Client-2] --- POST/Upload Tests ---
+[2025-10-09 16:31:23] [Client-3] ✅ POST /upload -> 201 Created
+[2025-10-09 16:31:23] [Client-3] --- Error Response Tests ---
+[2025-10-09 16:31:23] [Client-2] ✅ POST /upload -> 201 Created
+[2025-10-09 16:31:23] [Client-2] --- Error Response Tests ---
+[2025-10-09 16:31:23] [Client-3] ✅ GET /nonexistent.png -> 404 Not Found
+[2025-10-09 16:31:23] [Client-2] ✅ GET /nonexistent.png -> 404 Not Found
+[2025-10-09 16:31:23] [Client-3] ✅ PUT /index.html -> 405 Method Not Allowed
+[2025-10-09 16:31:23] [Client-2] ✅ PUT /index.html -> 405 Method Not Allowed
+[2025-10-09 16:31:23] [Client-3] ✅ POST /upload (text/plain) -> 415 Unsupported Media Type
+[2025-10-09 16:31:23] [Client-3] --- Security Tests ---
+[2025-10-09 16:31:23] [Client-2] ✅ POST /upload (text/plain) -> 415 Unsupported Media Type
+[2025-10-09 16:31:23] [Client-2] --- Security Tests ---
+[2025-10-09 16:31:23] [Client-3] ✅ GET /../etc/passwd -> 403 Forbidden (path traversal blocked)
+[2025-10-09 16:31:23] [Client-3] ✅ GET with Host: evil.com -> 403 Forbidden
+[2025-10-09 16:31:23] [Client-2] ✅ GET /../etc/passwd -> 403 Forbidden (path traversal blocked)
+[2025-10-09 16:31:23] [Client-3] ✅ GET without Host header -> 400 Bad Request
+[2025-10-09 16:31:23] [Client-3] ========== COMPLETED ==========
+[2025-10-09 16:31:23] [Client-2] ✅ GET with Host: evil.com -> 403 Forbidden
+[2025-10-09 16:31:23] [Client-2] ✅ GET without Host header -> 400 Bad Request
+[2025-10-09 16:31:23] [Client-2] ========== COMPLETED ==========
+[2025-10-09 16:31:23] 
+[2025-10-09 16:31:23] ================================================================================
+[2025-10-09 16:31:23] ALL CLIENT THREADS COMPLETED
+[2025-10-09 16:31:23] Total Execution Time: 2.84 seconds
+[2025-10-09 16:31:23] ================================================================================
+[2025-10-09 16:31:23] 
+📄 Test results saved to: testing/test_results.md
