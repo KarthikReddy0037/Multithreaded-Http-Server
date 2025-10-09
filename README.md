@@ -30,7 +30,7 @@ Python 3.8+ (no external dependencies)
 ### Installation
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Raghavendra1729-cell/Multithreaded-Http-Server
 cd "Multithreaded Http Server"
 mkdir -p resources/uploads testing/downloads
 ```
