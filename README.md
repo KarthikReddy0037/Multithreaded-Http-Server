@@ -1,177 +1,83 @@
-# 🚀 Multi-threaded HTTP Server
+# Multi-threaded HTTP Server
 
-A comprehensive HTTP server implementation using socket programming and multi-threading for Computer Networking assignment.
+Simple HTTP server with socket programming and multi-threading for Computer Networking assignment.
 
-## ✅ ALL REQUIREMENTS COMPLETED
+## Features
+- TCP Socket Programming
+- Multi-threading
+- GET/POST requests
+- File serving (HTML, TXT, JPEG, PNG)
+- Binary file transfer
+- Path traversal protection
 
-This server is a complete HTTP implementation that covers all typical requirements:
-
-### Core Features
-- **HTTP Request Parsing** - Handles GET, HEAD methods with proper header parsing
-- **Multi-threading Support** - Each client connection handled in separate thread
-- **File Serving** - Serves HTML, CSS, JS, images, text files with proper MIME types
-- **Directory Listing** - Beautiful HTML directory browser
-- **Error Handling** - Proper HTTP status codes (404, 500, 403, etc.)
-- **Security Features** - Path traversal protection and input validation
-- **Logging System** - Comprehensive logging to file and console
-- **Command Line Configuration** - Flexible server configuration
-
-## 🚀 Quick Start
+## Usage
 
 ```bash
-# Start with default settings (localhost:8080)
-python3 server.py
+python3 server.py [port] [host]
 
-# Custom port
-python3 server.py 9000
-
-# Custom host and port
-python3 server.py 9000 0.0.0.0
-
-# Custom document root
-python3 server.py 8080 127.0.0.1 /path/to/your/files
+# Examples:
+python3 server.py              # Default: localhost:8080
+python3 server.py 8000         # Custom port
+python3 server.py 8000 0.0.0.0 # Custom host and port
 ```
 
-## 🌐 Access Your Server
+## Test URLs
 
-Once started, open your browser and visit:
-- **Home Page**: `http://localhost:8080/`
-- **Sample Files**: `http://localhost:8080/test.txt`
-- **Directory Listing**: `http://localhost:8080/resources/`
+- Home: `http://localhost:8080/`
+- HTML: `http://localhost:8080/html/sample.html`
+- Text: `http://localhost:8080/text/test1.txt`
+- Images: `http://localhost:8080/images/anime.jpeg`
+- POST Form: `http://localhost:8080/html/form.html`
 
-## 🧪 Testing Commands
+## Testing
 
-### Using curl:
 ```bash
-# Test home page
+# Basic requests
 curl http://localhost:8080/
+curl http://localhost:8080/text/test1.txt
 
-# Test file serving
-curl http://localhost:8080/test.txt
+# Image downloads
+curl -o test.jpg http://localhost:8080/images/anime.jpeg
+curl -o test.png http://localhost:8080/images/goku.png
 
-# Test HEAD request (headers only)
-curl -I http://localhost:8080/
+# POST test
+curl -X POST -d "name=Test" http://localhost:8080/
 
-# Test directory listing
-curl http://localhost:8080/resources/
-
-# Test 404 error
+# Error tests
 curl http://localhost:8080/nonexistent.html
+curl -X DELETE http://localhost:8080/
 ```
 
-### Using browser:
-1. Start server: `python3 server.py`
-2. Open browser: `http://localhost:8080/`
-3. Navigate through the beautiful web interface!
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 project/
-├── server.py              # Complete HTTP server implementation
-├── index.html             # Beautiful home page
-├── test.txt               # Sample text file
-├── sample.html            # Sample HTML page
-├── server.log             # Server activity log (auto-created)
-├── README.md              # This documentation
-└── resources/             # Directory for additional files
-    └── uploads/          # Directory for future uploads
+├── server.py                    # Main server
+├── README.md                    # Documentation
+├── www/                         # Document root
+│   ├── html/                    # HTML files
+│   │   ├── index.html
+│   │   ├── sample.html
+│   │   └── form.html
+│   ├── text/                    # Text files
+│   │   ├── test1.txt
+│   │   └── test2.txt
+│   └── images/                  # Image files
+│       ├── anime.jpeg
+│       ├── naruto.jpeg
+│       ├── goku.png
+│       └── sample.png
+└── testing/                     # Test documentation
 ```
 
-## 🔧 Technical Implementation
+## Requirements
 
-### HTTP Features
-- **Request Parsing**: Proper HTTP/1.1 request parsing
-- **Response Formatting**: Correct HTTP response headers
-- **MIME Types**: Automatic content-type detection
-- **Status Codes**: 200, 404, 403, 500 error handling
-- **Methods**: GET and HEAD request support
-
-### Socket Programming
-- **TCP Socket**: `socket.socket(socket.AF_INET, socket.SOCK_STREAM)`
-- **Address Reuse**: `SO_REUSEADDR` for easy testing
-- **Connection Handling**: Up to 5 queued connections
-- **Graceful Shutdown**: Ctrl+C handling
-
-### Multi-threading
-- **Thread per Client**: Each connection gets its own thread
-- **Daemon Threads**: Clean server shutdown
-- **Concurrent Handling**: Multiple clients served simultaneously
-
-### Security Features
-- **Path Traversal Protection**: Prevents `../` attacks
-- **Input Validation**: URL decoding and sanitization
-- **Document Root Restriction**: Files served only from allowed directory
-
-## 📊 Server Capabilities
-
-| Feature | Status | Description |
-|---------|--------|-------------|
-| HTTP/1.1 Support | ✅ | Full request/response handling |
-| Multi-threading | ✅ | Concurrent client connections |
-| File Serving | ✅ | HTML, CSS, JS, images, text |
-| Directory Listing | ✅ | Beautiful HTML browser |
-| Error Handling | ✅ | Proper HTTP status codes |
-| Security | ✅ | Path traversal protection |
-| Logging | ✅ | File and console logging |
-| MIME Types | ✅ | Automatic content-type detection |
-| HEAD Requests | ✅ | Metadata-only responses |
-| Command Line Config | ✅ | Flexible server options |
-
-## 🔍 Code Architecture
-
-```python
-class HTTPServer:
-    def __init__(self, host, port, document_root):
-        # Server configuration
-    
-    def parse_request(self, request_data):
-        # HTTP request parsing
-    
-    def serve_file(self, file_path, client_socket):
-        # File serving with proper headers
-    
-    def list_directory(self, dir_path, request_path, client_socket):
-        # Directory listing generation
-    
-    def handle_client(self, client_socket, client_address):
-        # Main request handling logic
-    
-    def start(self):
-        # Server startup and main loop
-```
-
-## 📝 Logging
-
-The server creates detailed logs in `server.log`:
-- Connection events
-- Request details (method, path, client IP)
-- File serving activities
-- Error conditions
-- Server startup/shutdown
-
-## 🛡️ Security Features
-
-- **Path Traversal Protection**: Prevents access to files outside document root
-- **Input Validation**: URL decoding and sanitization
-- **Error Handling**: No sensitive information leaked in error responses
-- **Connection Limits**: Prevents resource exhaustion
-
-## 🎯 Assignment Requirements Met
-
-This implementation satisfies typical computer networking assignment requirements:
-
-1. ✅ **Socket Programming**: Complete TCP socket implementation
-2. ✅ **Multi-threading**: Concurrent client handling
-3. ✅ **HTTP Protocol**: Full HTTP/1.1 request/response handling
-4. ✅ **File Serving**: Static file serving capabilities
-5. ✅ **Error Handling**: Comprehensive error management
-6. ✅ **Security**: Basic security measures implemented
-7. ✅ **Logging**: Detailed activity logging
-8. ✅ **Configuration**: Command-line server configuration
-
-## 🚀 Ready to Use!
-
-Your HTTP server is now complete and ready for testing. It provides a solid foundation for understanding web server concepts and can handle real-world HTTP traffic!
+✅ TCP Socket Programming
+✅ Multi-threading
+✅ HTTP GET/POST requests
+✅ Binary file transfer
+✅ Error handling (404, 405, 403)
+✅ Path traversal protection
+✅ Command line configuration
 
 

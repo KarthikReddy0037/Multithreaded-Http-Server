@@ -1,0 +1,20 @@
+HOW TO TEST THE HTTP SERVER (MINIMAL)
+
+1) Start the server
+   python3 server.py
+
+2) Run the test client
+   python3 testing/client.py
+
+3) See results
+   - Downloaded files are saved in: testing/downloads/
+   - Console prints what passed and file sizes
+
+What this tests
+- Downloads: HTML (/), HTML (/html/sample.html)
+- Downloads: Text (/text/test1.txt)
+- Downloads: Images (/images/anime.jpeg, /images/goku.png)
+
+Notes
+- Keep only this testing folder: client.py + TESTING.txt + downloads/
+- No POST files are created to keep the project clean
