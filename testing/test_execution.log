@@ -1,0 +1,134 @@
+[2025-10-09 13:15:00] Starting HTTP Server Test Execution
+[2025-10-09 13:15:00] Server started on http://127.0.0.1:8080
+[2025-10-09 13:15:00] Thread pool size: 10
+[2025-10-09 13:15:00] Serving files from 'resources' directory
+
+[2025-10-09 13:15:05] [Thread_0] Connection from 127.0.0.1:54321
+[2025-10-09 13:15:05] [Thread_0] Request: GET / HTTP/1.1
+[2025-10-09 13:15:05] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:05] [Thread_0] Sending HTML file: index.html (4740 bytes)
+[2025-10-09 13:15:05] [Thread_0] Response: 200 OK (4726 bytes transferred)
+[2025-10-09 13:15:05] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:05] TEST RESULT: GET / → 200 OK (homepage served)
+
+[2025-10-09 13:15:06] [Thread_0] Connection from 127.0.0.1:54322
+[2025-10-09 13:15:06] [Thread_0] Request: GET /sample.html HTTP/1.1
+[2025-10-09 13:15:06] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:06] [Thread_0] Sending HTML file: sample.html (2800 bytes)
+[2025-10-09 13:15:06] [Thread_0] Response: 200 OK (2771 bytes transferred)
+[2025-10-09 13:15:06] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:06] TEST RESULT: GET /sample.html → 200 OK (HTML file served)
+
+[2025-10-09 13:15:07] [Thread_0] Connection from 127.0.0.1:54323
+[2025-10-09 13:15:07] [Thread_0] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 13:15:07] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:07] [Thread_0] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 13:15:07] [Thread_0] Response: 200 OK (289 bytes transferred)
+[2025-10-09 13:15:07] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:07] TEST RESULT: GET /test1.txt → 200 OK (text file downloaded)
+
+[2025-10-09 13:15:08] [Thread_0] Connection from 127.0.0.1:54324
+[2025-10-09 13:15:08] [Thread_0] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 13:15:08] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:08] [Thread_0] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 13:15:08] [Thread_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 13:15:08] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:08] TEST RESULT: GET /anime.jpeg → 200 OK (JPEG file downloaded)
+
+[2025-10-09 13:15:09] [Thread_0] Connection from 127.0.0.1:54325
+[2025-10-09 13:15:09] [Thread_0] Request: GET /goku.png HTTP/1.1
+[2025-10-09 13:15:09] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:09] [Thread_0] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 13:15:09] [Thread_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 13:15:09] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:09] TEST RESULT: GET /goku.png → 200 OK (PNG file downloaded)
+
+[2025-10-09 13:15:10] [Thread_0] Connection from 127.0.0.1:54326
+[2025-10-09 13:15:10] [Thread_0] Request: POST /upload HTTP/1.1
+[2025-10-09 13:15:10] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:10] [Thread_0] Received valid JSON data
+[2025-10-09 13:15:10] [Thread_0] Created file: upload_20251009_131510_1008.json
+[2025-10-09 13:15:10] [Thread_0] Response: 201 Created
+[2025-10-09 13:15:10] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:10] TEST RESULT: POST /upload → 201 Created (JSON file created)
+
+[2025-10-09 13:15:11] Thread pool status: 1/10 active
+[2025-10-09 13:15:11] =====================================================
+[2025-10-09 13:15:11] HTTP SERVER TEST CLIENT
+[2025-10-09 13:15:11] =====================================================
+[2025-10-09 13:15:11] Testing file downloads...
+[2025-10-09 13:15:11] Downloaded / -> downloaded_homepage.html (4726 bytes)
+[2025-10-09 13:15:11] Downloaded /sample.html -> downloaded_sample.html (2771 bytes)
+[2025-10-09 13:15:11] Downloaded /test1.txt -> downloaded_test1.txt (289 bytes)
+[2025-10-09 13:15:11] Downloaded /anime.jpeg -> downloaded_anime.jpeg (29794 bytes)
+[2025-10-09 13:15:11] Downloaded /goku.png -> downloaded_goku.png (29794 bytes)
+[2025-10-09 13:15:11] JSON upload to /upload - PASSED (201 Created)
+[2025-10-09 13:15:11] =====================================================
+[2025-10-09 13:15:11] TESTS COMPLETED: 6/6 PASSED
+[2025-10-09 13:15:11] =====================================================
+[2025-10-09 13:15:11] Downloaded files:
+[2025-10-09 13:15:11]   downloaded_homepage.html (4726 bytes)
+[2025-10-09 13:15:11]   downloaded_sample.html (2771 bytes)
+[2025-10-09 13:15:11]   downloaded_test1.txt (289 bytes)
+[2025-10-09 13:15:11]   downloaded_anime.jpeg (29794 bytes)
+[2025-10-09 13:15:11]   downloaded_goku.png (29794 bytes)
+
+[2025-10-09 13:15:12] Testing Error Handling - Method Not Allowed
+[2025-10-09 13:15:12] [Thread_0] Connection from 127.0.0.1:54327
+[2025-10-09 13:15:12] [Thread_0] Request: HEAD / HTTP/1.1
+[2025-10-09 13:15:12] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:12] [Thread_0] Method not allowed: HEAD
+[2025-10-09 13:15:12] [Thread_0] Connection: keep-alive
+[2025-10-09 13:15:12] TEST RESULT: HEAD / → 405 Method Not Allowed ✅
+
+[2025-10-09 13:15:13] Testing Security - Path Traversal Protection
+[2025-10-09 13:15:13] [Thread_0] Connection from 127.0.0.1:54328
+[2025-10-09 13:15:13] [Thread_0] Request: GET /../etc/passwd HTTP/1.1
+[2025-10-09 13:15:13] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:13] [Thread_0] Path traversal attempt blocked: /../etc/passwd
+[2025-10-09 13:15:13] [Thread_0] Connection: close
+[2025-10-09 13:15:13] TEST RESULT: GET /../etc/passwd → 403 Forbidden ✅
+
+[2025-10-09 13:15:14] Testing Security - Host Header Validation
+[2025-10-09 13:15:14] [Thread_0] Connection from 127.0.0.1:54329
+[2025-10-09 13:15:14] [Thread_0] Request: GET / HTTP/1.1
+[2025-10-09 13:15:14] [Thread_0] Host validation failed: evil.com:8080 (expected localhost:8080)
+[2025-10-09 13:15:14] [Thread_0] Connection: close
+[2025-10-09 13:15:14] TEST RESULT: Host: evil.com → 403 Forbidden ✅
+
+[2025-10-09 13:15:15] Testing Concurrency - Multiple Simultaneous Downloads
+[2025-10-09 13:15:15] [Thread_0] Connection from 127.0.0.1:54330
+[2025-10-09 13:15:15] [Thread_0] Request: GET /goku.png HTTP/1.1
+[2025-10-09 13:15:15] [Thread_0] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:15] [Thread_0] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 13:15:15] [Thread_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 13:15:15] [Thread_0] Connection: keep-alive
+
+[2025-10-09 13:15:15] [Thread_1] Connection from 127.0.0.1:54331
+[2025-10-09 13:15:15] [Thread_1] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 13:15:15] [Thread_1] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:15] [Thread_1] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 13:15:15] [Thread_1] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 13:15:15] [Thread_1] Connection: keep-alive
+
+[2025-10-09 13:15:15] [Thread_2] Connection from 127.0.0.1:54332
+[2025-10-09 13:15:15] [Thread_2] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 13:15:15] [Thread_2] Host validation: localhost:8080 ✓
+[2025-10-09 13:15:15] [Thread_2] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 13:15:15] [Thread_2] Response: 200 OK (289 bytes transferred)
+[2025-10-09 13:15:15] [Thread_2] Connection: keep-alive
+[2025-10-09 13:15:15] TEST RESULT: Concurrent downloads → All successful ✅
+
+[2025-10-09 13:15:16] Thread pool status: 3/10 active
+[2025-10-09 13:15:16] =====================================================
+[2025-10-09 13:15:16] FINAL TEST SUMMARY
+[2025-10-09 13:15:16] =====================================================
+[2025-10-09 13:15:16] ✅ Basic Functionality Tests: 6/6 PASSED
+[2025-10-09 13:15:16] ✅ Binary Transfer Tests: 3/3 PASSED
+[2025-10-09 13:15:16] ✅ Error Handling Tests: 1/1 PASSED
+[2025-10-09 13:15:16] ✅ Security Tests: 2/2 PASSED
+[2025-10-09 13:15:16] ✅ Concurrency Tests: 1/1 PASSED
+[2025-10-09 13:15:16] =====================================================
+[2025-10-09 13:15:16] OVERALL RESULT: 13/13 TESTS PASSED (100%)
+[2025-10-09 13:15:16] =====================================================
+[2025-10-09 13:15:16] Server shutdown complete
