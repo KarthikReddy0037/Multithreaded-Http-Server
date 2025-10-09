@@ -1,335 +1,336 @@
-[2025-10-09 16:31:11] ===== NEW TEST SESSION =====
-[2025-10-09 16:31:12] HTTP Server started on http://127.0.0.1:8080
-[2025-10-09 16:31:12] Thread pool size: 10
-[2025-10-09 16:31:12] Serving files from 'resources' directory
-[2025-10-09 16:31:12] Press Ctrl+C to stop the server
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54432
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET / HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sent HTML: index.html (4716 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54433
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /sample.html HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sent HTML: sample.html (2800 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (2800 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54434
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /form.html HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sent HTML: form.html (3551 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (3551 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54435
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (289 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54436
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /test2.txt HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sending binary file: test2.txt (419 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (419 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54437
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /goku.png HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54438
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /sample.png HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sending binary file: sample.png (15288 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Response: 200 OK (15288 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54439
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_0] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54440
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Request: GET / HTTP/1.1
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Sent HTML: index.html (4716 bytes)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:20] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54441
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET / HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sent HTML: index.html (4716 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Response: 200 OK (4716 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54442
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Request: GET /sample.html HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Sent HTML: sample.html (2800 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Response: 200 OK (2800 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54443
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET /sample.html HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54444
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sent HTML: sample.html (2800 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Response: 200 OK (2800 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Request: GET /form.html HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Sent HTML: form.html (3551 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Response: 200 OK (3551 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54445
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET /form.html HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sent HTML: form.html (3551 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Response: 200 OK (3551 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54446
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Response: 200 OK (289 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54447
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET /test1.txt HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sending binary file: test1.txt (289 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Response: 200 OK (289 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54448
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Request: GET /test2.txt HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Sending binary file: test2.txt (419 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54449
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET /test2.txt HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Response: 200 OK (419 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sending binary file: test2.txt (419 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Response: 200 OK (419 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54450
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Request: GET /goku.png HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54451
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Request: GET /goku.png HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Sending binary file: goku.png (29794 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54452
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET /sample.png HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sending binary file: sample.png (15288 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Response: 200 OK (15288 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54453
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Request: GET /sample.png HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54454
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Sending binary file: sample.png (15288 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54455
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Response: 200 OK (15288 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_1] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54456
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54457
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Request: GET /naruto.jpeg HTTP/1.1
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_0] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Sending binary file: naruto.jpeg (15454 bytes)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Response: 200 OK (15454 bytes transferred)
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Connection: keep-alive
-[2025-10-09 16:31:21] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:22] [ThreadPoolExecutor-0_1] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 16:31:22] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Response: 200 OK (10174706 bytes transferred)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54458
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: POST /upload HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Saved upload: upload_20251009_163123_6496.json
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Response: 201 Created
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54459
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: GET /nonexistent.png HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] File not found: /nonexistent.png
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Response: 404 Not Found
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54460
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Request: PUT /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Method PUT not allowed - Returning 405
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54461
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Request: POST /upload HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Wrong content-type for POST
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54462
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54463
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: GET /../etc/passwd HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Blocked unsafe path: /../etc/passwd - Path traversal attempt
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Response: 403 Forbidden
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54464
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54465
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Request: GET /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54466
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Request: GET /anime.jpeg HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Invalid host: evil.com - Returning 403
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: GET /naruto.jpeg HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54467
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Sending binary file: anime.jpeg (29794 bytes)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: GET /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Missing Host header - Returning 400
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Sending binary file: naruto.jpeg (15454 bytes)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Response: 200 OK (15454 bytes transferred)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Response: 200 OK (29794 bytes transferred)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54468
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Request: GET /naruto.jpeg HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Sending binary file: naruto.jpeg (15454 bytes)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Response: 200 OK (15454 bytes transferred)
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54469
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54470
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: POST /upload HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Request: POST /upload HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Saved upload: upload_20251009_163123_6496.json
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Response: 201 Created
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Saved upload: upload_20251009_163123_3760.json
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Response: 201 Created
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54471
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54472
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: GET /nonexistent.png HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] File not found: /nonexistent.png
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Request: GET /nonexistent.png HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Response: 404 Not Found
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] File not found: /nonexistent.png
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Response: 404 Not Found
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54473
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: PUT /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Method PUT not allowed - Returning 405
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54474
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Request: PUT /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Method PUT not allowed - Returning 405
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54475
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: POST /upload HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Wrong content-type for POST
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54476
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Request: POST /upload HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54477
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Wrong content-type for POST
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: GET /../etc/passwd HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Blocked unsafe path: /../etc/passwd - Path traversal attempt
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Response: 403 Forbidden
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:54478
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Request: GET /../etc/passwd HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54479
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: GET /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Blocked unsafe path: /../etc/passwd - Path traversal attempt
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Invalid host: evil.com - Returning 403
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Response: 403 Forbidden
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection: keep-alive
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_0] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:54480
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:54481
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Request: GET /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Request: GET /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Missing Host header - Returning 400
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Invalid host: evil.com - Returning 403
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_1] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_2] Connection closed
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:54482
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Request: GET /index.html HTTP/1.1
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Missing Host header - Returning 400
-[2025-10-09 16:31:23] [ThreadPoolExecutor-0_3] Connection closed
+===== CLEANED CODE TEST - 2025-10-09 16:53:01 =====
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55491
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Request: GET / HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Sent HTML: index.html (4716 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55492
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Request: GET /sample.html HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Sent HTML: sample.html (2800 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55493
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Request: GET /form.html HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Sent HTML: form.html (3551 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Response: 200 OK (3551 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55494
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Response: 200 OK (289 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:05] Thread pool status: 5 threads active, 110 total connections handled
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55495
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Request: GET /test2.txt HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Sending binary file: test2.txt (419 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Response: 200 OK (419 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55496
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Request: GET /goku.png HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55497
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Request: GET /sample.png HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Sending binary file: sample.png (15288 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Response: 200 OK (15288 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55498
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_3] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55499
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Request: GET / HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Sent HTML: index.html (4716 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55500
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Request: GET / HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Sent HTML: index.html (4716 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Response: 200 OK (4716 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55501
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Request: GET /sample.html HTTP/1.1
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Sent HTML: sample.html (2800 bytes)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 16:53:05] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55502
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Request: GET /sample.html HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Sent HTML: sample.html (2800 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Response: 200 OK (2800 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55503
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Request: GET /form.html HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Sent HTML: form.html (3551 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Response: 200 OK (3551 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Response: 200 OK (10174706 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:06] Thread pool status: 5 threads active, 120 total connections handled
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55505
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55504
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Response: 200 OK (289 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Request: GET /form.html HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Sent HTML: form.html (3551 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Response: 200 OK (3551 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55506
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55507
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Request: GET /test2.txt HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Request: GET /test1.txt HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Sending binary file: test2.txt (419 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Sending binary file: test1.txt (289 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Response: 200 OK (419 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Response: 200 OK (289 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55508
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55509
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Request: GET /goku.png HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Request: GET /test2.txt HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55510
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Sending binary file: test2.txt (419 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Response: 200 OK (419 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55511
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55512
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Request: GET /goku.png HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Request: GET /sample.png HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Sending binary file: goku.png (29794 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Sending binary file: sample.png (15288 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55513
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Response: 200 OK (15288 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Request: GET /naruto.jpeg HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55514
+[2025-10-09 16:53:06] Thread pool status: 5 threads active, 130 total connections handled
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Sending binary file: naruto.jpeg (15454 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55515
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Request: GET /sample.png HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Response: 200 OK (15454 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_0] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Sending binary file: sample.png (15288 bytes)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Response: 200 OK (15288 bytes transferred)
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55516
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Request: GET /Pizigani_1367_Chart_10MB.png HTTP/1.1
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:06] [ThreadPoolExecutor-0_1] Sending binary file: Pizigani_1367_Chart_10MB.png (10174706 bytes)
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_0] Response: 200 OK (10174706 bytes transferred)
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55517
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Request: POST /upload HTTP/1.1
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_1] Response: 200 OK (10174706 bytes transferred)
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Saved upload: upload_20251009_165307_2384.json
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Response: 201 Created
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:07] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55518
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: GET /nonexistent.png HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] File not found: /nonexistent.png
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Response: 404 Not Found
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55519
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: PUT /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Method PUT not allowed - Returning 405
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55520
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55521
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: POST /upload HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Wrong content-type for POST
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55522
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: GET /../etc/passwd HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Blocked unsafe path: /../etc/passwd - Path traversal attempt
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Response: 403 Forbidden
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55523
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Request: GET /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55524
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Invalid host: evil.com - Returning 403
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: GET /naruto.jpeg HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] Thread pool status: 5 threads active, 140 total connections handled
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55525
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Sending binary file: naruto.jpeg (15454 bytes)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: GET /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Missing Host header - Returning 400
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Response: 200 OK (15454 bytes transferred)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55526
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Request: GET /anime.jpeg HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Sending binary file: anime.jpeg (29794 bytes)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Response: 200 OK (29794 bytes transferred)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55527
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Request: GET /naruto.jpeg HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Sending binary file: naruto.jpeg (15454 bytes)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Response: 200 OK (15454 bytes transferred)
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55528
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55529
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: POST /upload HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: POST /upload HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Saved upload: upload_20251009_165308_2384.json
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Saved upload: upload_20251009_165308_6016.json
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Response: 201 Created
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Response: 201 Created
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55530
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55531
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Request: GET /nonexistent.png HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Request: GET /nonexistent.png HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] File not found: /nonexistent.png
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] File not found: /nonexistent.png
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Response: 404 Not Found
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Response: 404 Not Found
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55532
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55533
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: PUT /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: PUT /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Method PUT not allowed - Returning 405
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Method PUT not allowed - Returning 405
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55534
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Request: POST /upload HTTP/1.1
+[2025-10-09 16:53:08] Thread pool status: 5 threads active, 150 total connections handled
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55535
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Wrong content-type for POST
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Request: POST /upload HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Wrong content-type for POST
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55536
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: GET /../etc/passwd HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55537
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: GET /../etc/passwd HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Blocked unsafe path: /../etc/passwd - Path traversal attempt
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Host validation: 127.0.0.1:8080 ✓
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Response: 403 Forbidden
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Blocked unsafe path: /../etc/passwd - Path traversal attempt
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Response: 403 Forbidden
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection: keep-alive
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection from 127.0.0.1:55538
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection from 127.0.0.1:55539
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Request: GET /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Invalid host: evil.com - Returning 403
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Request: GET /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Invalid host: evil.com - Returning 403
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_0] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_1] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection from 127.0.0.1:55541
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection from 127.0.0.1:55540
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Request: GET /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Missing Host header - Returning 400
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Request: GET /index.html HTTP/1.1
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Missing Host header - Returning 400
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_2] Connection closed
+[2025-10-09 16:53:08] [ThreadPoolExecutor-0_3] Connection closed
