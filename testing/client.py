@@ -136,6 +136,22 @@ def verify_file(original, downloaded, client_id):
     return False
 
 
+def verify_json(downloaded, client_id):
+    """Verify JSON file is valid"""
+    if not os.path.exists(downloaded):
+        print(f"[Client-{client_id}] JSON file missing: {downloaded}")
+        return False
+    
+    try:
+        with open(downloaded, 'r') as f:
+            data = json.load(f)
+        print(f"[Client-{client_id}] JSON valid: {os.path.basename(downloaded)}")
+        return True
+    except json.JSONDecodeError as e:
+        print(f"[Client-{client_id}] JSON invalid: {os.path.basename(downloaded)} - {e}")
+        return False
+
+
 def run_client(client_id):
     """Run all tests for one client"""
     print(f"\n[Client-{client_id}] ===== STARTED =====")
@@ -151,6 +167,16 @@ def run_client(client_id):
     ]
     
     for url, save_name in files:
+        success = download_file(url, save_name, client_id)
+        results.append(("GET " + url, success))
+    
+    # JSON tests
+    print(f"[Client-{client_id}] -- JSON Tests --")
+    json_files = [
+        ("/new.json", f"client{client_id}_new.json")
+    ]
+    
+    for url, save_name in json_files:
         success = download_file(url, save_name, client_id)
         results.append(("GET " + url, success))
     
@@ -178,6 +204,11 @@ def run_client(client_id):
     for original, downloaded in checksums:
         verified = verify_file(original, downloaded, client_id)
         results.append(("Checksum " + os.path.basename(original), verified))
+    
+    # JSON validation
+    print(f"[Client-{client_id}] -- JSON Validation --")
+    json_verification = verify_json(f"{DOWNLOADS_DIR}/client{client_id}_new.json", client_id)
+    results.append(("JSON Validation new.json", json_verification))
     
     # POST test
     print(f"[Client-{client_id}] -- POST Test --")

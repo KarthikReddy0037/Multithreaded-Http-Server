@@ -10,12 +10,12 @@ Built using Python socket programming and multi-threading.
 
 ### Key Features
 
-- Static file serving (HTML, TXT, PNG, JPEG)
+- Static file serving (HTML, TXT, PNG, JPEG, JSON)
 - Concurrent client handling with thread pool
-- JSON POST request processing
+- JSON GET and POST request processing
 - HTTP/1.1 persistent connections
 - Path traversal protection and host validation
-- Comprehensive logging
+- Comprehensive logging and automated testing
 
 ### Requirements
 
@@ -53,11 +53,14 @@ python3 server.py 8000 0.0.0.0 20
 
 ### Testing
 
+**Run the automated test suite** (ensure server is running first):
 ```bash
 python3 testing/client.py
 ```
 
-**Test Results**: 48/48 tests passing
+**Test Results**: 54/54 tests passing ✓
+
+See [Testing Steps](#testing-steps) section below for detailed instructions.
 
 ### Accessing the Server
 
@@ -65,14 +68,24 @@ python3 testing/client.py
 - http://127.0.0.1:8080/
 - http://127.0.0.1:8080/about.html
 - http://127.0.0.1:8080/contact.html
-- http://127.0.0.1:8080/logo.png
+- http://127.0.0.1:8080/new.json
 
-**cURL**:
+**cURL Examples**:
 ```bash
+# GET HTML
 curl http://127.0.0.1:8080/
+
+# GET JSON
+curl http://127.0.0.1:8080/new.json
+
+# Download binary files
 curl -O http://127.0.0.1:8080/logo.png
 curl -O http://127.0.0.1:8080/photo.jpg
-curl -X POST http://127.0.0.1:8080/upload -H "Content-Type: application/json" -d '{"name": "test"}'
+
+# POST JSON data
+curl -X POST http://127.0.0.1:8080/upload \
+  -H "Content-Type: application/json" \
+  -d '{"name": "test", "data": "value"}'
 ```
 
 ---
@@ -83,7 +96,8 @@ curl -X POST http://127.0.0.1:8080/upload -H "Content-Type: application/json" -d
 
 | Extension | Content-Type | Transfer Mode |
 |-----------|--------------|---------------|
-| .html | text/html | Text |
+| .html | text/html; charset=utf-8 | Text |
+| .json | application/json; charset=utf-8 | Text |
 | .txt | application/octet-stream | Binary |
 | .png | application/octet-stream | Binary |
 | .jpg, .jpeg | application/octet-stream | Binary |
@@ -194,7 +208,7 @@ def is_safe_path(path):
 ### Additional Protections
 
 - Max 8KB header size
-- File extension whitelist (.html, .txt, .jpg, .jpeg, .png)
+- File extension whitelist (.html, .json, .txt, .jpg, .jpeg, .png)
 - 30-second timeout (slowloris protection)
 - All security events logged
 
@@ -225,37 +239,229 @@ Multithreaded Http Server/
 │   ├── about.html
 │   ├── contact.html
 │   ├── sample.txt            # Text file
+│   ├── new.json              # JSON data file
 │   ├── logo.png              # PNG image
 │   ├── photo.jpg             # JPEG image
-│   ├── largePhoto.png        # Large PNG (>1MB)
+│   ├── largePhoto.png        # Large PNG (>10MB)
 │   └── uploads/              # JSON uploads
 ├── testing/
-│   ├── client.py             # Test suite
-│   ├── test_results.md
-│   ├── test_execution.log
-│   └── downloads/
-├── server.log
+│   ├── client.py             # Automated test suite
+│   ├── test_results.md       # Test report
+│   └── downloads/            # Client downloads
+├── logs/
+│   └── server.log            # Server logs
 └── README.md
 ```
 
 ---
 
-## Testing and Logs
+## Testing Steps
 
-### Test Coverage
+### Prerequisites
 
-- GET request testing (all file types)
-- POST request testing (JSON payloads)
-- Security testing (path traversal, host validation)
-- Binary transfer integrity (MD5 checksums)
-- Error response verification
-- Concurrent client handling
+1. Ensure Python 3.8+ is installed
+2. Navigate to the project directory
+3. Ensure `resources/` and `testing/downloads/` directories exist
+
+### Step-by-Step Testing Guide
+
+#### 1. Start the Server
+
+Open a terminal and run:
+```bash
+python3 server.py
+```
+
+**Expected Output**:
+```
+==================================================
+HTTP/1.1 Server Started
+==================================================
+Host: 127.0.0.1
+Port: 8080
+Thread Pool: 10 workers
+Resources Directory: resources/
+Logs: server.log
+==================================================
+Press Ctrl+C to stop server
+```
+
+#### 2. Run Automated Tests
+
+Open a **new terminal** (keep the server running) and execute:
+```bash
+python3 testing/client.py
+```
+
+**Expected Output**:
+```
+==================================================
+HTTP SERVER TEST SUITE
+==================================================
+Server: http://127.0.0.1:8080
+Clients: 3 concurrent
+==================================================
+
+[Client-1] ===== STARTED =====
+[Client-1] -- Basic Tests --
+[Client-1] Downloaded / (439 bytes)
+[Client-1] Downloaded /about.html (428 bytes)
+[Client-1] Downloaded /contact.html (287 bytes)
+[Client-1] Downloaded /sample.txt (240 bytes)
+[Client-1] -- JSON Tests --
+[Client-1] Downloaded /new.json (113 bytes)
+[Client-1] -- Binary Tests --
+[Client-1] Downloaded /logo.png (29794 bytes)
+...
+==================================================
+Test Summary: 54/54 passed (100%)
+Results saved to: testing/test_results.md
+==================================================
+```
+
+#### 3. Verify Test Results
+
+```bash
+cat testing/test_results.md
+```
+
+**What to Look For**:
+- ✓ All 54 tests should show **PASS**
+- ✓ Success Rate: **100.0%**
+- ✓ Message: **ALL TESTS PASSED!**
+
+#### 4. Verify Downloaded Files
+
+```bash
+ls -lh testing/downloads/
+```
+
+**Expected Files** (per client):
+- `client[1-3]_index.html` - Homepage
+- `client[1-3]_about.html` - About page
+- `client[1-3]_contact.html` - Contact page
+- `client[1-3]_sample.txt` - Text file
+- `client[1-3]_new.json` - JSON data ✨ **NEW**
+- `client[1-3]_logo.png` - Small image (~29KB)
+- `client[1-3]_large.png` - Large image (~10MB)
+- `client[1-3]_photo.jpg` - JPEG image
+
+#### 5. Check Server Logs
+
+```bash
+tail -n 50 logs/server.log
+```
+
+**What to Look For**:
+```
+[2025-10-10 10:39:14] [ThreadPoolExecutor-0_1] Request: GET /new.json
+[2025-10-10 10:39:14] [ThreadPoolExecutor-0_1] Sent JSON: new.json (113 bytes)
+[2025-10-10 10:39:14] [ThreadPoolExecutor-0_1] Response: 200 OK
+```
+
+### Test Coverage Details
+
+The automated test suite validates:
+
+#### ✅ **Basic Tests** (per client)
+- GET `/` → index.html
+- GET `/about.html`
+- GET `/contact.html`
+- GET `/sample.txt`
+
+#### ✅ **JSON Tests** (per client) ✨ **NEW**
+- GET `/new.json` - Download JSON file
+- JSON validation - Parse and verify structure
+
+#### ✅ **Binary Tests** (per client)
+- GET `/logo.png` - Small PNG (~29KB)
+- GET `/largePhoto.png` - Large PNG (~10MB)
+- GET `/photo.jpg` - JPEG image
+
+#### ✅ **Integrity Tests** (per client)
+- MD5 checksum verification for `logo.png`
+- MD5 checksum verification for `photo.jpg`
+- Ensures no data corruption during transfer
+
+#### ✅ **POST Tests** (per client)
+- POST `/upload` with JSON payload
+- Verify 201 Created response
+- Check uploaded files in `resources/uploads/`
+
+#### ✅ **Error Response Tests** (per client)
+- 404 Not Found - `/nonexistent.png`
+- 405 Method Not Allowed - `PUT /index.html`
+- 415 Unsupported Media Type - POST with `text/plain`
+
+#### ✅ **Security Tests** (per client)
+- 403 Forbidden - Path traversal attempt `/../etc/passwd`
+- 403 Forbidden - Invalid host header `evil.com`
+- 400 Bad Request - Missing Host header
+
+### Manual Testing
+
+You can also test manually using cURL:
+
+```bash
+# Test JSON endpoint
+curl http://127.0.0.1:8080/new.json
+
+# Test with verbose output
+curl -v http://127.0.0.1:8080/new.json
+
+# Verify JSON structure
+curl http://127.0.0.1:8080/new.json | python3 -m json.tool
+
+# Test POST
+curl -X POST http://127.0.0.1:8080/upload \
+  -H "Content-Type: application/json" \
+  -d '{"test": "data", "timestamp": "2025-10-10"}'
+
+# Test error handling
+curl http://127.0.0.1:8080/nonexistent.json  # Should return 404
+curl http://127.0.0.1:8080/../etc/passwd      # Should return 403
+```
+
+### Test Summary
+
+| Category | Tests | Status |
+|----------|-------|--------|
+| Basic GET Requests | 12 | ✅ PASS |
+| JSON Tests | 6 | ✅ PASS |
+| Binary Transfers | 9 | ✅ PASS |
+| Integrity Checks | 6 | ✅ PASS |
+| JSON Validation | 3 | ✅ PASS |
+| POST Requests | 3 | ✅ PASS |
+| Error Handling | 9 | ✅ PASS |
+| Security Tests | 6 | ✅ PASS |
+| **Total** | **54** | **✅ 100%** |
+
+### Troubleshooting
+
+**Problem**: `OSError: [Errno 48] Address already in use`
+```bash
+# Solution: Kill existing server process
+ps aux | grep "server.py" | grep -v grep | awk '{print $2}' | xargs kill
+```
+
+**Problem**: Tests fail with connection errors
+```bash
+# Solution: Ensure server is running first
+python3 server.py  # In terminal 1
+python3 testing/client.py  # In terminal 2
+```
+
+**Problem**: Downloaded files are corrupted
+```bash
+# Solution: Check checksum tests - they should all PASS
+# If checksums fail, there may be a transfer issue
+```
 
 ### Log Files
 
-- `server.log` - Server activity and security events
-- `testing/test_execution.log` - Client test execution
-- `testing/test_results.md` - Detailed test report
+- `logs/server.log` - Server activity, requests, responses, security events
+- `testing/test_results.md` - Detailed test report with pass/fail status
+- All connections and errors are logged with timestamps
 
 ---
 

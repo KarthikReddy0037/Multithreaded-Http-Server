@@ -20,7 +20,8 @@ CONTENT_TYPES = {
     '.txt': 'application/octet-stream',
     '.jpg': 'application/octet-stream',
     '.jpeg': 'application/octet-stream',
-    '.png': 'application/octet-stream'
+    '.png': 'application/octet-stream',
+    '.json': 'application/json; charset=utf-8'
 }
 
 MAX_HEADER_SIZE = 8192
@@ -151,10 +152,10 @@ def handle_get(sock, path, keep_alive, logger, thread_id):
     
     filename = os.path.basename(file_path)
     
-    if ext == '.html':
+    if ext in ['.html', '.json']:
         with open(file_path, 'rb') as f:
             send_response(sock, "200 OK", headers, f.read())
-        logger.info(f"[{thread_id}] Sent HTML: {filename} ({file_size} bytes)")
+        logger.info(f"[{thread_id}] Sent {ext[1:].upper()}: {filename} ({file_size} bytes)")
     else:
         headers["Content-Disposition"] = f'attachment; filename="{filename}"'
         send_response(sock, "200 OK", headers)
