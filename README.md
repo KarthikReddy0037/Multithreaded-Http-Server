@@ -465,6 +465,7 @@ python3 testing/client.py  # In terminal 2
 
 ---
 
-**Author**: Lingaraghavendra  
+**Author**: KarthikReddy0037  
 **Assignment**: Multi-threaded HTTP Server Using Socket Programming  
+Updated by KarthikReddy
 
